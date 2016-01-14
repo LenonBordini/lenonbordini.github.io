@@ -1,7 +1,20 @@
-<!DOCTYPE html>
 <html>
+<head>
+    <title>Mine Field</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="MineField.css" />
+    <script src="jquery-2.1.4.js"></script>
+    <script src="MineField.js"></script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <form id="formPlayGame" class="playScreen">
+        <button type="submit" id="btnMineField">PLAY</button>
+        <div class="options">
+            <label>Lines x Columns:</label>
+            <input type="number" id="length" value="15" min="10" max="50" pattern="/[0-9]{2}/" required />
+        </div>
+        <button type="button" class="menu-playScreen" onmousedown="$('.playScreen').toggleClass('closed');">MENU</button>
+    </form>
+    <div class="mineCamp"></div>
 </body>
 </html>
