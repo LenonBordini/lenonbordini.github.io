@@ -14,6 +14,8 @@ The classic minesweeper game with another name (because the developer is brazili
 	- **R**: Restart
 	- **HACK**: If you bored to play, just type "hack" in your keyboard and you'll be happy (or more bored)
 
+If you **WIN**, be careful with lights!
+
 ### Nightmare
 
 A game made in Unity 3D where the purpose is stay alive and kill all the zombies.
