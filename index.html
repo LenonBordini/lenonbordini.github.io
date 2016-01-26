@@ -3,50 +3,39 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-	<title>Título da página</title>
-
-	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Lenon Bordini</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	<link href="font-awesome-4.5.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	<link href="prism/css/prism.css" type="text/css" rel="stylesheet">
+	<link href="css/prism.css" type="text/css" rel="stylesheet">
 
-	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/jquery-2.2.0.min.js"></script>
 	<script src="js/materialize.min.js"></script>
+	<script src="js/prism.js"></script>
 	<script src="js/init.js"></script>
 	<script src="ComboBox/jquery.comboBox.js"></script>
-	<script src="prism/js/prism.js"></script>
 </head>
 <body>
-	<div class="navbar-fixed">
-		<nav class="blue darken-2" role="navigation">
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo white-text" style="padding:0 40px 0 40px;">Logo</a>
-				<a href="#" data-activates="mobile-demo" class="button-collapse white-text"><i class="material-icons">menu</i></a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="MineField/MineField.html">MineField</a></li>
-					<li><a href="NightMare/Web.html">Nightmare</a></li>
-					<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
-					<li><a href="#">BlogSample</a></li>
-				</ul>
-				<ul class="side-nav" id="mobile-demo">
-					<li><a href="MineField/MineField.html">MineField</a></li>
-					<li><a href="NightMare/Web.html">Nightmare</a></li>
-					<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
-					<li><a href="#">BlogSample</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-	<div id="index-banner" class="parallax-container">
-		<div class="section no-pad-bot">
-			<div class="container">
-				<br><br>
-				<h1 class="header center blue-text text-lighten-2 "></h1>
-				<br><br>
-			</div>
-		</div>
-		<div class="parallax"><img src="imagens/code-feature-banner.jpg" alt="imagem banner"></div>
-	</div>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+				<li><a href="MineField/MineField.html">MineField</a></li>
+				<li><a href="NightMare/Web.html">Nightmare</a></li>
+				<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
+				<li><a href="#">BlogSample</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+				<li><a href="MineField/MineField.html">MineField</a></li>
+				<li><a href="NightMare/Web.html">Nightmare</a></li>
+				<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
+				<li><a href="#">BlogSample</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
     <div class="container">
 	    <div class="section">
 		    <div class="row">
@@ -54,14 +43,10 @@
 				    <div class="z-depth-1 card-code space-bottom">
 					    <h4 class="light">ComboBox Plugin</h4>
 					    <div class="card-content space-bottom">
-						    <p>
-                                Explicação do plugin.
-						    </p>
+						    <p>Descrição do plugin.</p>
 					    </div>
 					    <div class="card-content">
-						    <p>
-                                Exemplo 1 (List)
-						    </p>
+						    <p>Example 1 (List)</p>
                             <div class="row">
                                 <div class="col s2">
                                     <a id="loadClients" class="waves-effect waves-light btn">Load Clients</a>
@@ -73,7 +58,6 @@
                                 </div>
                             </div>
 					    </div>
-
 					    <pre class="language-javascript" data-name="javascript">
 						    <code class="language-javascript">
     $("#clients").comboBox({
@@ -89,14 +73,9 @@
     });
 						    </code>
 					    </pre>
-					    <div class="right-align">
-						    <button class="btn waves-effect  blue darken-2 " type="submit" name="enviarCodigo"><i class="fa fa-paper-plane"></i> <span>Enviar</span></button>
-						    <button class="btn waves-effect  blue darken-2 " type="button" name="copiarCodigo"><i class="fa fa-clipboard"></i> <span>Copiar</span></button>
-					    </div>
-
 					    <div class="card-content">
 						    <p>
-                                Exemplo 2: URL (Ajax)
+                                Example 2: URL (Ajax)
 						    </p>
                             <div class="row">
                                 <div class="col s2">
@@ -118,117 +97,46 @@
     });
 						    </code>
 					    </pre>
-					    <div class="right-align">
-						    <button class="btn waves-effect  blue darken-2 " type="submit" name="enviarCodigo"><i class="fa fa-paper-plane"></i> <span>Enviar</span></button>
-						    <button class="btn waves-effect  blue darken-2 " type="button" name="copiarCodigo"><i class="fa fa-clipboard"></i> <span>Copiar</span></button>
-					    </div>
-                        					    
-					    <div class="row">
-						    <div class="col s12">
-							    <div class="space-top right-align" style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
-								    <ul class="pagination">
-									    <li class="blue-text text-darken-2">Compartilhar:</li>
-									    <li id="fb"><a class="white-text" title="Facebook" href="http://www.facebook.com.br" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
-									    <li id="tw"><a class="white-text" title="Twitter" href="http://twitter.com.br" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
-									    <li id="gt"><a class="white-text" title="Github" href="http://www.github.com" target="_blank"><i class="fa fa-github-square"></i></a></li>
-									    <li id="gp"><a class="white-text" title="Google Plus" href="http://plus.google.com" target="_blank"><i class="fa fa-google-plus-square"></i></a></li>
-								    </ul>
-							    </div>
-						    </div>
-					    </div>
-				    </div>
-				    <div class="comentarios space-bottom">
-					    <h5>Comentários</h5>
-					    <div>
-						    <div class="row">
-							    <div class="col s12 m2 l1">
-								    <div class="avatar valign-wrapper">
-									    <img alt="" src="imagens/avatar.png">
-								    </div>
-							    </div>
-							    <div class="col s12 m10 l11">
-								    <div class="comment-meta commentmetadata">
-									    <cite><a href="#">Nome </a></cite><span>em</span><a href="#"> 25 de Janeiro de 2016 às 11:50</a>
-								    </div>
-								    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid incidunt, adipisci nobis hic recusandae eos dignissimos quam reiciendis perspiciatis atque voluptas eum, aut vitae odio perferendis earum quas esse quo?</p>
-								    <div class="responder">
-									    <a href="#">Responder</a>
-								    </div>
-							    </div>
-						    </div>
-					    </div>
-				    </div>
-				    <div class="comente">
-					    <h5>Deixe seu Comentário</h5>
-					    <div class="comment-area z-depth-1">
-						    <div class="row">
-							    <div class="col s12">
-								    <form action="">
-									    <div class="row">
-										    <div class="input-field col s12 l8">
-											    <input type="text" placeholder="nome">
-										    </div>
-									    </div>
-									    <div class="row">
-										    <div class="input-field col s12 l8">
-											    <input type="text" placeholder="E-mail">
-										    </div>
-									    </div>
-									    <div class="row">
-										    <div class="input-field col s12 l8">
-											    <input type="text" placeholder="Blog">
-										    </div>
-									    </div>
-									    <div class="row">
-										    <div class="input-field col s12">
-											    <textarea id="textarea1" class="materialize-textarea" placeholder="Sua Mensagem"></textarea>
-										    </div>
-									    </div>
-									    <div class="right-align">
-										    <button class="btn waves-effect  blue darken-2 " type="reset" name="limparComment"><i class="fa fa-trash"></i> <span>Limpar</span></button>
-										    <button class="btn waves-effect  blue darken-2 " type="submit" name="enviarComment"><i class="fa fa-paper-plane"></i> <span>Enviar Comentário</span></button>
-									    </div>
-								    </form>
-							    </div>
-						    </div>
-					    </div>
 				    </div>
 			    </div>
 		    </div>
 	    </div>
     </div>
-
-    <footer class="page-footer grey darken-1">
-	    <div class="container">
-		    <div class="row">
-			    <div class="col l6 s12">
-				    <h5 class="white-text">Lorem</h5>
-				    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis illo, ipsam ea ipsa repellendus maiores, cupiditate sunt tenetur? Eos voluptatum assumenda recusandae laborum.</p>
-			    </div>
-			    <div class="col l3 s12">
-				    <h5 class="white-text">Titulo</h5>
-				    <ul>
-					    <li><a class="white-text" href="#!">Link 1</a></li>
-					    <li><a class="white-text" href="#!">Link 2</a></li>
-					    <li><a class="white-text" href="#!">Link 3</a></li>
-					    <li><a class="white-text" href="#!">Link 4</a></li>
-				    </ul>
-			    </div>
-			    <div class="col l3 s12" style="overflow: hidden;">
-				    <h5 class="white-text">Redes Sociais</h5>
-				    <iframe src="http://ghbtns.com/github-btn.html?user=dogfalo&amp;repo=materialize&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
-				    <br>
-				    <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="http://platform.twitter.com/widgets/follow_button.baa54ded21a982344c4ced326592f3de.pt.html#dnt=true&amp;id=twitter-widget-0&amp;lang=pt&amp;screen_name=MaterializeCSS&amp;show_count=true&amp;show_screen_name=true&amp;size=l&amp;time=1453738449954" style="position: static; visibility: visible; width: 291px; height: 28px;" data-screen-name="MaterializeCSS"></iframe>
-				    <br>
-				    <div id="___follow_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 146px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 146px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I0_1453738449750" name="I0_1453738449750" src="https://apis.google.com/_/widget/render/follow?usegapi=1&amp;annotation=bubble&amp;height=24&amp;rel=publisher&amp;origin=http%3A%2F%2Fmaterializecss.com&amp;url=https%3A%2F%2Fplus.google.com%2F108619793845925798422&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.pt_BR.RHi7MBkCGyw.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCPJs_1GO2xIwcyB8jm4Gam0HvmSjQ#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1453738449750&amp;parent=http%3A%2F%2Fmaterializecss.com&amp;pfname=&amp;rpctoken=11930393" data-gapiattached="true"></iframe></div>
-			    </div>
-		    </div>
-	    </div>
-	    <div class="footer-copyright">
-		    <div class="container">
-			    Todos os direitos reservados &copy; <a class="grey-text text-lighten-3" href="#">Wesley Rocha</a>
-		    </div>
-	    </div>
+    <footer class="page-footer light-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">DevBox</h5>
+                    <p class="grey-text text-lighten-4">
+                        We are a team of college students working on this project like it's our full time job. 
+                        Any amount would help support and continue development on this project and is greatly appreciated.
+                    </p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="blue-text text-lighten-3" href="http://github.com/LenonBordini">Lenon Bordini</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
