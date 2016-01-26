@@ -1,13 +1,13 @@
 (function () {
     var configuration = {
         loadingText: "Loading...",
-        errorText: "Load fail",
+        errorText: "Load Fail",
 
         defaultText: "Select",
         defaultValue: "",
 
-        disabledOnLoad: true,
-        disabledOnError: true,
+        disableOnLoad: true,
+        disableOnError: true,
 
         onStartAll: null,
         onLoadAll: null,
@@ -40,14 +40,14 @@
         settings.defaultValue = settings.defaultValue || configuration.defaultValue;
         settings.defaultText = settings.defaultText || configuration.defaultText;
 
-        settings.comboBox.html(new Option(configuration.loadingText, settings.defaultValue)).prop("disabled", configuration.disabledOnLoad);
+        settings.comboBox.html(new Option(configuration.loadingText, settings.defaultValue)).prop("disabled", configuration.disableOnLoad);
 
-        var execute = function ($function) {
+        var execute = function ($function, param) {
             if ($function && typeof ($function) === "function")
-                $function();
+                $function(param);
         };
 
-        var load = function (itens) {
+        var load = function (itens, ajax) {
             settings.comboBox.empty();
 
             if (settings.defaultText)
@@ -70,11 +70,13 @@
                 settings.comboBox.val(settings.selectedValue);
 
             settings.comboBox.removeAttr("disabled");
-                
-            execute(settings.onComplete);
-            execute(configuration.onCompleteAll);
-            execute(settings.onLoad);
-            execute(configuration.onLoadAll);
+
+            if (!ajax) {
+                execute(settings.onLoad, itens);
+                execute(configuration.onLoadAll, itens);
+                execute(settings.onComplete);
+                execute(configuration.onCompleteAll);
+            }
         };
 
         execute(settings.onStart);
@@ -83,18 +85,26 @@
         if (settings.itens.length) {
             load(settings.itens);
         } else {
-            $.get(settings.url, settings.params).success(function (data) {
-                load(data);
-            }).error(function (xhr) {
-                settings.comboBox.html(new Option(configuration.errorText, defaultValue)).prop("disabled", configuration.disabledOnError);
-                execute(settings.onError);
-                execute(configuration.onErrorAll);
-            }).complete(function () {
-                execute(settings.onComplete);
-                execute(configuration.onCompleteAll);
+            $.ajax({
+                url: settings.url,
+                method: "GET",
+                type: "JSON",
+                data: settings.params,
+                success: function (data) {
+                    load(data, true);
+                },
+                error: function (xhr) {
+                    settings.comboBox.html(new Option(configuration.errorText, settings.defaultValue)).prop("disabled", configuration.disableOnError);
+                    execute(settings.onError, xhr);
+                    execute(configuration.onErrorAll, xhr);
+                },
+                complete: function () {
+                    execute(settings.onComplete);
+                    execute(configuration.onCompleteAll);
+                }
             });
         }
 
-        return settings.comboBox;
+        return settings.comboBox;;
     };
 })();

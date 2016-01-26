@@ -1,0 +1,124 @@
+body{
+  min-width: 350px;
+  background-image: url(../imagens/bg4.png);
+}
+form{
+  padding: 20px;
+}
+nav ul li a{
+  color: #fff;
+}
+.space-bottom{
+  margin-bottom: 40px;
+}
+.space-top{
+  margin-top: 40px;
+}
+.tags{
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.comentarios p{
+  margin: 0px;
+}
+.comentarios img{
+  border-radius:50%;
+}
+.comment-area{
+  /*padding: 0 30px 0 30px;*/
+  background: #f5f5f5;
+}
+
+#fb i{
+  color: #3A5795;
+}
+#tw i{
+  color: #55acee;
+}
+#gt i{
+  color: #000;
+}
+#gp i{
+  color: #DC493C;
+}
+#gt, #tw, #fb, #gp{
+  padding: 5px;
+}
+/*Botão padrão*/
+button{
+  font-size: 10px;
+  padding: 0 15px 0 15px !important;
+}
+button:not(:last-child){
+  margin-right: 5px;
+
+}
+button > span{
+  font-size: 15px;
+  padding: 0 0 0 5px;
+  font-family: arial;
+}
+button .fa{
+  font-size: 15px;
+  padding-right: 5px;
+}
+/*Botão padrão - Fim*/
+
+/*Área de Código*/
+.card-code{
+  background-color:#f5f5f5;
+  padding:20px;
+}
+
+/*Área de Código - Fim*/
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
