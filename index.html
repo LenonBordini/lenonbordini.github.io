@@ -21,14 +21,14 @@
 			<a id="logo-container" href="#" class="brand-logo white-text">Logo</a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="MineField/MineField.html">MineField</a></li>
-				<li><a href="NightMare/Web.html">Nightmare</a></li>
+				<li><a href="Nightmare/Web.html">Nightmare</a></li>
 				<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
 				<li><a href="#">BlogSample</a></li>
 			</ul>
 
 			<ul id="nav-mobile" class="side-nav">
 				<li><a href="MineField/MineField.html">MineField</a></li>
-				<li><a href="NightMare/Web.html">Nightmare</a></li>
+				<li><a href="Nightmare/Web.html">Nightmare</a></li>
 				<li><a href="ComboBox/comboBox-demo.html">ComboBox</a></li>
 				<li><a href="#">BlogSample</a></li>
 			</ul>
@@ -42,101 +42,97 @@
 					<div class="z-depth-1 card-code space-bottom">
 						<h4 class="light">ComboBox Plugin</h4>
 						<div class="card-content space-bottom">
-							<p>Descrição do plugin.</p>
+							<p>Load your combos easiest</p>
 						</div>
 						<div class="card-content">
 							<p>Example 1 (List)</p>
 							<div class="row">
-								<div class="col s12">
-									<a id="loadClients" class="waves-effect waves-light btn light-blue darken-1">Load Clients</a>
+								<div class="col s12 l2">
+									<a id="loadClients" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Load Clients</a>
 								</div>
-								<div class="col s12">
-									<select id="clients" style="display: block">
-										<option><- Press</option>
+								<div class="col s12 l6">
+									<select id="clients" style="display: block; margin: 10px 0;">
+										<option>LOAD ME</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<pre class="language-javascript" data-name="javascript">
 							<code class="language-javascript">
-$("#clients").comboBox({
-	itens: [
-		{ id: 1, name: "John", age: 20 },
-		{ id: 2, name: "Steve", age: 25 },
-		{ id: 3, name: "Bill", age: 19 },
-		{ id: 4, name: "Brandon", age: 31 },
-		{ id: 5, name: "Ryan", age: 27 }
-	],
-	value: "id",
-	text: "{id} - {name} ({age})"
-});
-						</code>
-					</pre>
-					<div class="card-content">
-						<p>
-							Example 2: URL (Ajax)
-						</p>
-						<div class="row">
-							<div class="col s12 l6">
-								<input id="githubAccount" type="text" placeholder="Place your github user" />
-							</div>
-							<div class="col s12 l6">
-								<select id="repos" style="display: block">
-									<option><- Type</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<pre class="language-javascript" data-name="javascript">
-						<code class="language-javascript">
-$("#repos").comboBox({
-	url: "https://api.github.com/users/" + $("#githubAccount").val() + "/repos",
-	value: "id",
-	text: "{name} ({description})"
-});
-					</code>
-				</pre>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-<footer class="page-footer light-blue darken-2">
-	<div class="container">
-		<div class="row">
-			<div class="col l6 s12">
-				<h5 class="white-text">DevBox</h5>
-				<p class="grey-text text-lighten-4">
-					We are a team of college students working on this project like it's our full time job.
-					Any amount would help support and continue development on this project and is greatly appreciated.
-				</p>
-			</div>
-			<div class="col l3 s12">
-				<h5 class="white-text">Settings</h5>
-				<ul>
-					<li><a class="white-text" href="#!">Link 1</a></li>
-					<li><a class="white-text" href="#!">Link 2</a></li>
-					<li><a class="white-text" href="#!">Link 3</a></li>
-					<li><a class="white-text" href="#!">Link 4</a></li>
-				</ul>
-			</div>
-			<div class="col l3 s12">
-				<h5 class="white-text">Connect</h5>
-				<ul>
-					<li><a class="white-text" href="#!">Link 1</a></li>
-					<li><a class="white-text" href="#!">Link 2</a></li>
-					<li><a class="white-text" href="#!">Link 3</a></li>
-					<li><a class="white-text" href="#!">Link 4</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="footer-copyright">
-		<div class="container">
-			Made by <a class="blue-text text-lighten-3" href="http://github.com/LenonBordini">Lenon Bordini</a>
-		</div>
-	</div>
-</footer>
-
+    $("#clients").comboBox({
+	    itens: [
+		    { id: 1, name: "John", age: 20 },
+		    { id: 2, name: "Steve", age: 25 },
+		    { id: 3, name: "Bill", age: 19 },
+		    { id: 4, name: "Brandon", age: 31 },
+		    { id: 5, name: "Ryan", age: 27 }
+	    ],
+	    value: "id",
+	    text: "{id} - {name} ({age})"
+    });
+						    </code>
+					    </pre>
+					    <div class="card-content" style="margin-top: 60px">
+						    <p>Example 2: URL (Ajax)</p>
+						    <div class="row">
+							    <div class="col s12 l6">
+								    <input id="githubAccount" type="text" placeholder="Place your github user" />
+							    </div>
+							    <div class="col s12 l5">
+								    <select id="repos" style="display: block">
+									    <option>Select</option>
+								    </select>
+							    </div>
+						    </div>
+					    </div>
+					    <pre class="language-javascript" data-name="javascript">
+						    <code class="language-javascript">
+    $("#repos").comboBox({
+	    url: "https://api.github.com/users/" + $("#githubAccount").val() + "/repos",
+	    value: "id",
+	    text: "{name} ({description})"
+    });
+					        </code>
+				        </pre>
+			        </div>
+		        </div>
+	        </div>
+        </div>
+    </div>
+    <footer class="page-footer light-blue darken-2">
+	    <div class="container">
+		    <div class="row">
+			    <div class="col l6 s12">
+				    <h5 class="white-text">DevBox</h5>
+				    <p class="grey-text text-lighten-4">
+					    Some shit about my company or team.
+				    </p>
+			    </div>
+			    <div class="col l3 s12">
+				    <h5 class="white-text">Settings</h5>
+				    <ul>
+					    <li><a class="white-text" href="#!">Link 1</a></li>
+					    <li><a class="white-text" href="#!">Link 2</a></li>
+					    <li><a class="white-text" href="#!">Link 3</a></li>
+					    <li><a class="white-text" href="#!">Link 4</a></li>
+				    </ul>
+			    </div>
+			    <div class="col l3 s12">
+				    <h5 class="white-text">Connect</h5>
+				    <ul>
+					    <li><a class="white-text" href="#!">Link 1</a></li>
+					    <li><a class="white-text" href="#!">Link 2</a></li>
+					    <li><a class="white-text" href="#!">Link 3</a></li>
+					    <li><a class="white-text" href="#!">Link 4</a></li>
+				    </ul>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="footer-copyright">
+		    <div class="container">
+			    Made by <a class="blue-text text-lighten-3" href="http://github.com/LenonBordini">Lenon Bordini</a>
+		    </div>
+	    </div>
+    </footer>
 </body>
 </html>
