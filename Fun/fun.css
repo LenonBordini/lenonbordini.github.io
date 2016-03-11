@@ -1,0 +1,25 @@
+body {
+	overflow: hidden;
+	transition: background 0.5s;
+	cursor: none;
+}
+
+div {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	box-shadow: 0px 0px 10px #000, inset 0px 0px 10px #000;
+	position: absolute;
+}
+
+@keyframes rotateX {
+	0% { -webkit-transform: rotateX(0deg); transform: rotateX(0deg); }
+	100% { -webkit-transform: rotateX(180deg); transform: rotateX(180deg); }
+}
+.rotateX { animation: rotateX 1s linear; }
+
+@keyframes rotateY {
+	0% { -webkit-transform: rotateY(0deg); transform: rotateY(0deg); }
+	100% { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+}
+.rotateY { animation: rotateY 1s linear; }
