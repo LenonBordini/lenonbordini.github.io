@@ -31,19 +31,12 @@ document.onclick = function () {
 	createDiv();
 };
 
-var i = divs.length - 1;
 setInterval(function () {
-	if (divs.length == 1)
-		return;
-
-	if (i == 0)
-		i = divs.length - 1;
-
-	divs[i].style.top = divs[i - 1].style.top;
-	divs[i].style.left = divs[i - 1].style.left;
-
-	i--;
-}, 1);
+	for (var i = divs.length - 1; i >= 1; i--) {
+		divs[i].style.top = divs[i - 1].style.top;
+		divs[i].style.left = divs[i - 1].style.left;
+	}
+}, 50);
 
 setInterval(function () {
 	document.getElementsByTagName("body")[0].style.background = randomColor(0.5);
