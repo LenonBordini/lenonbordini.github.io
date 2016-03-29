@@ -29,21 +29,22 @@ var emojiSnake = (function () {
 
 	var events = {
 		playButtonClick: function () {
-			this.className = this.className.replace("play", "");
-			this.innerHTML = "";
 			document.getElementsByTagName("html")[0].className = "";
 
+			this.className = this.className.replace("play", "");
 		    this.onclick = null;
-			config.snake.push(this);
+			this.innerHTML = "";
+
 			config.snake[0].style.display = "none";
 
 			var ball = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
 			ball.style.background = this.style.background;
+			ball.style.top = this.style.top;
+			ball.style.left = this.style.left;
 			config.snake.push(ball);
 
 			functions.createBall();
 
-			document.onmousemove = events.snakeMovement;
 			config.snakeFollow = setInterval(intervals.snakeFollow, 100);
 			functions.checkCatch = setInterval(intervals.checkCatch, 100);
 			functions.executeTimeToCatch(config.timeToCatch);
@@ -63,8 +64,10 @@ var emojiSnake = (function () {
 			config.snake[0].style.top = (e.clientY - 50) + "px";
 			config.snake[0].style.left = (e.clientX - 50) + "px";
 
-			config.snakeTop = config.snake[1].offsetTop + 50;
-			config.snakeLeft = config.snake[1].offsetLeft + 50;
+			if (config.snake.length > 1) {
+				config.snakeTop = config.snake[1].offsetTop + 50;
+				config.snakeLeft = config.snake[1].offsetLeft + 50;
+			}
 		}
 	};
 
@@ -110,6 +113,9 @@ var emojiSnake = (function () {
 		var playButton = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
 		playButton.className += " play";
 		playButton.innerHTML = "PLAY!";
+
+		config.snake.push(playButton);
+		document.onmousemove = events.snakeMovement;
 
 		playButton.onclick = events.playButtonClick;
 	};

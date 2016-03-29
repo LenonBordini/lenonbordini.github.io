@@ -14,7 +14,6 @@ div.ball {
 div.play {
 	cursor: pointer !important;
 	text-align: center;
-	transition: all 0.3s;
 	font-family: Arial;
 	font-weight: bold;
 	font-size: 20px;
@@ -22,6 +21,7 @@ div.play {
 	padding-top: 40px;
 	box-sizing: border-box;
 	text-shadow: 0 0 2px #000;
+	transition: width 0.3s, height 0.3s, margin-top 0.3s, margin-left 0.3s, font-size 0.3s, text-shadow 0.3s, opacity 0.3s, top 1s linear, left 1s linear !important;
 }
 div.play:hover {
 	width: 140px;
@@ -30,6 +30,7 @@ div.play:hover {
 	margin-left: -20px;
 	font-size: 45px;
 	text-shadow: 0 0 8px #000;
+	opacity: 0.8;
 }
 
 .explosion {
