@@ -1,87 +1,145 @@
 var emojiSnake = (function () {
+	document.oncontextmenu = function () { return false; };
+
 	var config = {
 		body: document.body,
-		browserWidth: function() { return Math.max(document.documentElement.clientWidth, window.innerWidth || 0) },
-		browserHeight: function() { return Math.max(document.documentElement.clientHeight, window.innerHeight || 0) },
+
+		browserWidth: function() { 
+			var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			return w >= 800 ? w : 800;
+		},
+		browserHeight: function() { 
+			var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			return h >= 600 ? h : 600;
+		},
+
 		snake: [],
 		snakeTop: 0,
 		snakeLeft: 0,
+		score: 0,
+
 		peace: null,
+
 		timeToCatch: 5000,
 		intervalTimeToCatch: null,
+
 		snakeFollow: null,
 		checkCatch: null
 	};
 
-	var functions = {
-		init: function () {
-			//Background color
-			setInterval((function rc() {
-				config.body.style.background = functions.randomColor(0.2);
-				return rc;
-			})(), 1500);
+	var events = {
+		playButtonClick: function () {
+			this.className = this.className.replace("play", "");
+			this.innerHTML = "";
+			document.getElementsByTagName("html")[0].className = "";
 
-			//Reset Scene
-			config.body.innerHTML = "";
-		    document.getElementsByTagName("html")[0].className = "initGame";
-		    config.snake = [];
-			functions.stopGame();
+		    this.onclick = null;
+			config.snake.push(this);
+			config.snake[0].style.display = "none";
 
-			//Button to Play
-			var playButton = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
-			playButton.className += " play";
+			var ball = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
+			ball.style.background = this.style.background;
+			config.snake.push(ball);
 
-			playButton.onclick = function () {
-			    document.getElementsByTagName("html")[0].className = "";
+			functions.createBall();
 
-			    playButton.onclick = null;
-				config.snake.push(playButton);
-				config.snake[0].style.display = "none";
+			document.onmousemove = events.snakeMovement;
+			config.snakeFollow = setInterval(intervals.snakeFollow, 100);
+			functions.checkCatch = setInterval(intervals.checkCatch, 100);
+			functions.executeTimeToCatch(config.timeToCatch);
 
-				var ball = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
-				ball.style.background = playButton.style.background;
-				config.snake.push(ball);
+			//Score
+			config.score = 0;
+			var score = document.createElement("div");
+			score.id = "score";
+			score.className = "score";
+			score.innerHTML = "SCORE: 0000";
+			config.body.appendChild(score);
 
-				functions.createBall();
-
-				document.onmousemove = function (e) {
-					config.snake[0].style.top = (e.clientY - 50) + "px";
-					config.snake[0].style.left = (e.clientX - 50) + "px";
-
-					config.snakeTop = config.snake[1].offsetTop + 50;
-					config.snakeLeft = config.snake[1].offsetLeft + 50;
-				};
-
-				config.snakeFollow = setInterval(function () {
-					for (var i = config.snake.length - 1; i >= 1; i--) {
-						config.snake[i].style.top = config.snake[i - 1].style.top;
-						config.snake[i].style.left = config.snake[i - 1].style.left;
-					}
-				}, 100);
-
-				functions.checkCatch = setInterval(function () {
-					var y = +config.peace.style.top.replace(/[^\d]+/, ""), 
-						x = +config.peace.style.left.replace(/[^\d]+/, "");
-
-					if (config.peace.className.indexOf("explode") == -1 && 
-						(config.snakeTop >= y && config.snakeTop <= y + 90) && 
-						(config.snakeLeft >= x && config.snakeLeft <= x + 90)) {
-						config.peace.className = config.peace.className.replace("pulse", "");
-						config.snake.push(config.peace);
-						functions.createBall();
-						functions.executeTimeToCatch(config.timeToCatch > 2000 ? config.timeToCatch - 100 : config.timeToCatch);
-					}
-				}, 100);
-
-				functions.executeTimeToCatch(config.timeToCatch);
-			};
+			//Timer
+			functions.startTimer();
 		},
+		snakeMovement: function (e) {
+			config.snake[0].style.top = (e.clientY - 50) + "px";
+			config.snake[0].style.left = (e.clientX - 50) + "px";
 
+			config.snakeTop = config.snake[1].offsetTop + 50;
+			config.snakeLeft = config.snake[1].offsetLeft + 50;
+		}
+	};
+
+	var intervals = {
+		snakeFollow: function () {
+			for (var i = config.snake.length - 1; i >= 1; i--) {
+				config.snake[i].style.top = config.snake[i - 1].style.top;
+				config.snake[i].style.left = config.snake[i - 1].style.left;
+			}
+		},
+		checkCatch: function () {
+			var y = +config.peace.style.top.replace(/[^\d]+/, ""), 
+				x = +config.peace.style.left.replace(/[^\d]+/, "");
+
+			if (config.peace.className.indexOf("explode") == -1 && 
+				(config.snakeTop >= y && config.snakeTop <= y + 100) && 
+				(config.snakeLeft >= x && config.snakeLeft <= x + 100)) {
+				config.peace.className = config.peace.className.replace("pulse", "");
+				config.snake.push(config.peace);
+				config.score += 10;
+				document.getElementById("score").innerHTML = "SCORE: " + ("0000" + config.score).substr(config.score.toString().length);
+				functions.createBall();
+				functions.startTimer();
+				functions.executeTimeToCatch(config.timeToCatch > 2000 ? config.timeToCatch - 100 : config.timeToCatch);
+			}
+		}
+	};
+
+	var init = function () {
+		//Background color
+		setInterval((function rc() {
+			config.body.style.background = functions.randomColor(0.2);
+			return rc;
+		})(), 1500);
+
+		//Reset Scene
+		config.body.innerHTML = "";
+	    document.getElementsByTagName("html")[0].className = "initGame";
+	    config.snake = [];
+		functions.stopGame();
+
+		//Button to Play
+		var playButton = functions.createBall(config.browserHeight() / 2 - 50, config.browserWidth() / 2 - 50);
+		playButton.className += " play";
+		playButton.innerHTML = "PLAY!";
+
+		playButton.onclick = events.playButtonClick;
+	};
+
+	var functions = {
 		stopGame: function () {
 			document.onmousemove = null;
 			clearInterval(config.snakeFollow);
 			clearInterval(config.checkCatch);
 			clearTimeout(config.intervalTimeToCatch);
+		},
+
+		startTimer: function () {
+			var timer = document.getElementById("timer");
+			if (!timer) {
+				timer = document.createElement("div");
+				timer.id = "timer";
+				timer.className = "timer";
+				config.body.appendChild(timer);
+				timer = document.getElementById("timer");
+			}
+			timer.style.background = functions.randomColor();
+			timer.style.transition = "width 0s linear";
+			timer.style.width = "100%";
+			setTimeout(function () {
+				var time = ((config.timeToCatch - 100) / 1000);
+				timer.style.transition = "width " + time + "s linear, background " + time + "s linear";
+				timer.style.width = "0%";
+				timer.style.background = "#f00";
+			}, 100);
 		},
 
 		explode: function (e) {
@@ -107,7 +165,6 @@ var emojiSnake = (function () {
 				functions.explode(config.peace);
 
 				setTimeout(function () {
-				    alert("Game Over");
 				    var explodeSnakeTimer = 500, explodeSnake = (function e() {
 				        functions.explode(config.snake[config.snake.length - 1]);
 				        config.snake.pop();
@@ -115,13 +172,13 @@ var emojiSnake = (function () {
 				        if (config.snake.length > 1) {
 				            setTimeout(e, explodeSnakeTimer);
 				            if (explodeSnakeTimer > 100)
-				                explodeSnakeTimer -= 50;
+				                explodeSnakeTimer -= explodeSnakeTimer / 8;
 				            return;
 				        }
 
-				        setTimeout(functions.init, 1000);
+				        setTimeout(init, 1000);
 				    })();
-				}, 800);
+				}, 1200);
 			}, timeToCatch);
 			config.timeToCatch = timeToCatch;
 		},
@@ -146,6 +203,7 @@ var emojiSnake = (function () {
 		random: function (min, max) {
 			return Math.floor(Math.random() * (max || min)) + (max ? min : 0);
 		},
+
 		randomColor: function (alpha) {
 		    var randomColor = [];
 		    for (var i = 0; i < 3; i++)
@@ -156,6 +214,6 @@ var emojiSnake = (function () {
 	};
 
 	return {
-		init: functions.init
+		init: init
 	};
 })();

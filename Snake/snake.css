@@ -1,6 +1,6 @@
 * { cursor: none; user-select: none; -webkit-user-select: none; }
 html.initGame { cursor: default !important; }
-body { overflow: hidden; transition: background 0.5s; }
+body { overflow: hidden; transition: background 0.5s; margin: 0; padding: 0; }
 
 div.ball {
 	position: absolute;
@@ -13,16 +13,23 @@ div.ball {
 
 div.play {
 	cursor: pointer !important;
-}
-div.play::after{
-	content: 'Click to Play!';
-	padding-left: 8px;
+	text-align: center;
+	transition: all 0.3s;
 	font-family: Arial;
-	line-height: 100px;
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 20px;
 	color: #fff;
-	text-shadow: 0 0 5px #000;
+	padding-top: 40px;
+	box-sizing: border-box;
+	text-shadow: 0 0 2px #000;
+}
+div.play:hover {
+	width: 140px;
+	height: 140px;
+	margin-top: -20px;
+	margin-left: -20px;
+	font-size: 45px;
+	text-shadow: 0 0 8px #000;
 }
 
 .explosion {
@@ -35,13 +42,43 @@ div.play::after{
 }
 
 @keyframes pulse {
-	0% { width: 80px; height: 80px; margin: 10px; }
-	50% { width: 110px; height: 110px; margin: -5px; }
-	100% { width: 80px; height: 80px; margin: 10px; }
+	0% { width: 80px; height: 80px; margin: 10px; box-shadow: 0px 0px 30px #000, inset 0px 0px 20px #000; }
+	50% { width: 130px; height: 130px; margin: -15px; box-shadow: 0px 0px 30px #f00, inset 0px 0px 20px #f00; }
+	100% { width: 80px; height: 80px; margin: 10px; box-shadow: 0px 0px 30px #000, inset 0px 0px 20px #000; }
 }
 .pulse { animation: pulse 0.7s linear infinite; }
 
 @keyframes explode {
-	100% { width: 132px; height: 132px; margin-top: -16px; margin-left: -16px; opacity: 0; box-shadow: 0px 0px 30px #000, inset 0px 0px 20px #000 !important; }
+	100% { 
+		width: 132px; 
+		height: 132px; 
+		margin-top: -16px; 
+		margin-left: -16px; 
+		opacity: 0; 
+		box-shadow: 0px 0px 30px #000, inset 0px 0px 20px #000 !important; 
+		background-color: #f00;
+	}
 }
 .explode { animation: explode 0.8s; }
+
+.score { 
+	text-align: center; 
+	font-size: 150px; 
+	color: #000; 
+	opacity: 0.4; 
+	position: absolute; 
+	z-index: -1; 
+	width: 100%;
+	font-family: Arial;
+	top: 20px;
+	text-shadow: 0 0 10px #000;
+}
+
+.timer {
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	background: #000;
+	border-bottom: 1px solid #000;
+	box-shadow: 0px 0px 10px #000, inset 0px 0px 5px #000 !important; 
+}
