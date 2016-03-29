@@ -25,4 +25,8 @@ A game made in Unity 3D where the purpose is stay alive and kill all the zombies
 
 The game does not have end, the end is your *death*.
 ___
+### Snake
+
+The motherfucking snake, catch all the peaces!
+___
 Hope you have **fun**. (:
