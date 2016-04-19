@@ -43,17 +43,24 @@
 				<div class="col s12">
 					<div class="z-depth-1 card-code space-bottom">
 						<h4 class="light">ComboBox Plugin</h4>
-						<div class="card-content space-bottom">
-							<p>Load your combos easiest</p>
+						<div class="row">
+							<div class="col s12 l8">
+								<div class="card-content space-bottom">
+									<p>Load your combos in an easy way and do not let your users waiting!</p>
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<a id="download" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">DOWNLOAD</a>
+							</div>
 						</div>
 						<div class="card-content">
-							<p>Example 1 (List)</p>
+							<p>Example 1: Array</p>
 							<div class="row">
 								<div class="col s12 l2">
 									<a id="loadClients" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Load Clients</a>
 								</div>
 								<div class="col s12 l6">
-									<select id="clients" style="display: block; margin: 10px 0;">
+									<select id="comboExample1" style="display: block; margin: 10px 0;">
 										<option>LOAD ME</option>
 									</select>
 								</div>
@@ -61,7 +68,7 @@
 						</div>
 						<pre class="language-javascript" data-name="javascript">
 							<code class="language-javascript">
-    $("#clients").comboBox({
+    $("#comboExample1").comboBox({
 	    itens: [
 		    { id: 1, name: "John", age: 20 },
 		    { id: 2, name: "Steve", age: 25 },
@@ -75,26 +82,67 @@
 						    </code>
 					    </pre>
 					    <div class="card-content" style="margin-top: 60px">
-						    <p>Example 2: URL (Ajax)</p>
+						    <p>Example 2: Ajax</p>
 						    <div class="row">
 							    <div class="col s12 l6">
 								    <input id="githubAccount" type="text" placeholder="Place your github user" />
 							    </div>
 							    <div class="col s12 l5">
-								    <select id="repos" style="display: block">
-									    <option>Select</option>
-								    </select>
+								    <select id="comboExample2" style="display: block"></select>
 							    </div>
 						    </div>
 					    </div>
 					    <pre class="language-javascript" data-name="javascript">
 						    <code class="language-javascript">
-    $("#repos").comboBox({
+    $("#comboExample2").comboBox({
 	    url: "https://api.github.com/users/" + $("#githubAccount").val() + "/repos",
 	    value: "id",
-	    text: "{name} ({description})"
+	    text: "{name} ({description})",
+		defaultText: false
     });
 					        </code>
+				        </pre>
+					    <div class="card-content" style="margin-top: 60px">
+						    <p>Example 3: Events</p>
+						    <div class="row">
+							    <div class="col s12 l4">
+								    <input id="githubAccountEvent" type="text" placeholder="Place your github user" />
+							    </div>
+							    <div class="col s12 l5">
+								    <select id="comboExample3" style="display: block"></select>
+							    </div>
+							    <div class="col s12 l3">
+								    <input id="githubAccountInfo" type="text" placeholder="Status here" readonly />
+							    </div>
+						    </div>
+					    </div>
+					    <pre class="language-javascript" data-name="javascript">
+						    <code class="language-javascript">
+    $("#comboExample3").comboBox({
+		url: "https://api.github.com/users/" + $("#githubAccountEvent").val() + "/repos",
+		value: "id",
+		text: "name",
+		defaultText: "Select your repository!",
+		onStart: function () { 
+			$("#githubAccountInfo").val("Starting..."); 
+		},
+		onLoad: function (data) { 
+			alert("Combo Loaded!");	
+			console.log("Only repositories with bugs...");
+			console.log(data);
+		},
+		onComplete: function () { 
+			$("#githubAccountInfo").val("Finished!");
+			setTimeout(function () {
+				$("#githubAccountInfo").val("");
+			}, 1000);
+		},
+		onError: function (xhr) { 
+			alert("Some shit happened!"); 
+			console.log(xhr.responseText);
+		}
+	});	        
+							</code>
 				        </pre>
 			        </div>
 		        </div>
@@ -107,10 +155,10 @@
 			    <div class="col l6 s12">
 				    <h5 class="white-text">DevBox</h5>
 				    <p class="grey-text text-lighten-4">
-					    Some shit about my company or team.
+						Group of friends making shit in our code
 				    </p>
 			    </div>
-			    <div class="col l3 s12">
+			   <!--  <div class="col l3 s12">
 				    <h5 class="white-text">Settings</h5>
 				    <ul>
 					    <li><a class="white-text" href="#!">Link 1</a></li>
@@ -127,7 +175,7 @@
 					    <li><a class="white-text" href="#!">Link 3</a></li>
 					    <li><a class="white-text" href="#!">Link 4</a></li>
 				    </ul>
-			    </div>
+			    </div> -->
 		    </div>
 	    </div>
 	    <div class="footer-copyright">

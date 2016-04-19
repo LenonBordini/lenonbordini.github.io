@@ -37,9 +37,6 @@
             selectedValue: null
         }, options);
 
-        settings.defaultValue = settings.defaultValue || configuration.defaultValue;
-        settings.defaultText = settings.defaultText || configuration.defaultText;
-
         settings.comboBox.html(new Option(configuration.loadingText, settings.defaultValue)).prop("disabled", configuration.disableOnLoad);
 
         var execute = function ($function, param) {
@@ -50,8 +47,8 @@
         var load = function (itens, ajax) {
             settings.comboBox.empty();
 
-            if (settings.defaultText)
-                settings.comboBox.append(new Option(settings.defaultText, settings.defaultValue));
+            if (settings.defaultText !== false)
+                settings.comboBox.append(new Option(settings.defaultText || configuration.defaultText, settings.defaultValue));
 
             itens.forEach(function (item) {
                 var regex = /\{\w+\}/, text = settings.text;
@@ -92,9 +89,12 @@
                 data: settings.params,
                 success: function (data) {
                     load(data, true);
+                    execute(settings.onLoad, data);
+                    execute(configuration.onLoadAll);
                 },
                 error: function (xhr) {
-                    settings.comboBox.html(new Option(configuration.errorText, settings.defaultValue)).prop("disabled", configuration.disableOnError);
+                    settings.comboBox.html(new Option(configuration.errorText, settings.defaultValue));
+                    settings.comboBox.prop("disabled", configuration.disableOnError);
                     execute(settings.onError, xhr);
                     execute(configuration.onErrorAll, xhr);
                 },
