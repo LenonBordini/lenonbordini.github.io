@@ -120,6 +120,11 @@
 						    <code class="language-javascript">
     $("#comboExample3").comboBox({
 		url: "https://api.github.com/users/" + $("#githubAccountEvent").val() + "/repos",
+		params: { 
+			nameParam1: true,
+			nameParam2: "potato",
+			nameParam3: 42
+		},
 		value: "id",
 		text: "name",
 		defaultText: "Select your repository!",
