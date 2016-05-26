@@ -1,0 +1,64 @@
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>CRUD</title>
+	<link rel="stylesheet" type="text/css" href="crud.css" />
+	<script type="text/javascript" src="utilities.js"></script>
+	<script type="text/javascript" src="crud.js"></script>
+</head>
+<body onload="crud.updateGrid();">
+	<div class="container">
+		<div id="divGrid" class="section">
+			<div class="buttons-section">
+				<button type="button" class="crud" onclick="crud.openForm()">Novo</button>
+			</div>
+			<table id="grid" class="grid">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Idade</th>
+						<th>Endereço</th>
+						<th style="width: 125px;">Telefone</th>
+						<th style="width: 240px;">E-Mail</th>
+						<th class="button-col"></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		<div id="divDados" class="section hide">
+			<fieldset id="fieldsetForm" class="crud">
+				<legend>Formulário de Cadastro/Edição</legend>
+				<form class="crud">
+					<input type="hidden" id="id" name="id" />
+					<div class="crud-row">
+						<label>Nome</label>
+						<input type="text" id="nome" maxlength="70" />
+					</div>
+					<div class="crud-row">
+						<label>Idade</label>
+						<input type="text" id="idade" />
+					</div>
+					<div class="crud-row">
+						<label>Endereço</label>
+						<input type="text" id="endereco" maxlength="100" />
+					</div>
+					<div class="crud-row">
+						<label>Telefone</label>
+						<input type="text" id="telefone"/>
+					</div>
+					<div class="crud-row">
+						<label>E-Mail</label>
+						<input type="text" id="email" maxlength="100" />
+					</div>
+					<div class="crud-row buttons-section">
+						<button type="submit" class="crud" onclick="return crud.updateItem()">Salvar</button>
+						<button type="button" class="crud" onclick="crud.closeForm()">Cancelar</button>
+					</div>
+				</form>
+			</fieldset>
+		</div>
+	</div>
+</body>
+</html>

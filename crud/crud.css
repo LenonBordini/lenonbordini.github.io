@@ -1,0 +1,174 @@
+* {
+	font-family: 'Segoe UI';
+}
+body {
+	background: #EEE;
+}
+
+.container {
+	max-width: 1024px;
+	width: 100%;
+	margin: 0 auto;
+	box-shadow: 0 0 2px #000;
+	border-radius: 3px;
+	padding: 20px;
+	box-sizing: border-box;
+	background: #FFF;
+}
+
+.grid {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 0 3px #000;
+}
+.grid thead tr:last-child {
+	border-bottom: 1px solid #000;
+}
+.grid thead th {
+	background: #B0D0F9;
+	padding: 4px 6px;
+}
+.grid tbody td {
+	padding: 4px 6px;
+}
+.grid tbody tr {
+	transition: background 0.3s;
+}
+.grid tbody tr:nth-child(odd) {
+	background: #F7F7F7;
+}
+.grid tbody tr:nth-child(even) {
+	background: #E6E4E4;
+}
+.grid tbody tr:hover {
+	background: #DDD;
+	cursor: pointer;
+}
+.grid thead tr th.button-col {
+	width: 60px;
+}
+.grid tbody tr td button {
+	width: 18px;
+	height: 18px;
+	background-size: 18px 18px;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	outline: none;
+	margin: 0 4px;
+}
+
+.grid tbody tr td button.excluir {
+	background-image: url('excluir.png');
+}
+
+.grid tbody tr td button.editar {
+	background-image: url('editar.png');
+}
+
+.buttons-section {
+	width: 100%;
+	text-align: right;
+	margin: 10px 0;
+}
+.buttons-section {
+	display: inline-block;
+}
+
+button.crud {
+	min-width: 120px;
+	font-size: 15px;
+	border-radius: 4px;
+	border: 0;
+	padding: 5px 7px;
+	font-weight: bold;
+	background: #B0D0F9;
+	cursor: pointer;
+	box-shadow: inset -1px -1px 1px #000;
+	outline: none;
+	transition: background 0.3s;
+	text-shadow: 1px 1px 1px #fff;
+}
+button.crud:hover {
+	background: #96C3FD;
+}
+button.crud:active {
+	box-shadow: inset 1px 1px 1px #000;
+}
+
+fieldset.crud {
+	border: 0;
+	box-shadow: 0 0 3px #BBB;
+	border-radius: 3px;
+}
+fieldset.crud legend {
+	font-weight: bold;
+	padding: 0 5px;
+	background: #FFF;
+	font-size: 17px;
+}
+fieldset.crud div.crud-row {
+	width: 100%;
+	margin: 7px 0;
+}
+fieldset.crud div.crud-row label {
+	width: 30%;
+	display: inline-block;
+	text-align: right;
+	padding: 0 15px;
+	box-sizing: border-box;
+}
+fieldset.crud div.crud-row input[type=text] {
+	border: 1px solid #DDD;
+	border-radius: 2px;
+	max-width: 500px;
+	width: 100%;
+	padding: 7px 5px;
+	outline: none;
+}
+fieldset.crud div.crud-row input[type=text]:focus {
+	box-shadow: 0 0 1px lightblue;
+}
+
+@media screen and (max-width: 804px) {
+	fieldset.crud div.crud-row label {
+		text-align: left;
+		padding: 0;
+	}
+}
+
+form.crud {
+	margin: 0;
+}
+
+div.detail {
+    width: 220px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: 1px solid #DDD;
+    box-shadow: 0 0 7px #000, inset 0 0 2px #FFF;
+    z-index: 9999;
+    background-color: #FF7676;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #3A3A3A;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+div.detail:hover {
+    opacity: 1;
+}
+div.detail.hide {
+	right: -270px;
+	opacity: 0.1;
+}
+
+div.section {
+	
+}
+div.section.hide {
+	display: none;
+}
