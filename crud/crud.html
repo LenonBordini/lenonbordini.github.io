@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
 	<title>CRUD</title>
 	<link rel="stylesheet" type="text/css" href="crud.css" />
 	<script type="text/javascript" src="utilities.js"></script>
@@ -12,20 +13,22 @@
 			<div class="buttons-section">
 				<button type="button" class="crud" onclick="crud.openForm()">Novo</button>
 			</div>
-			<table id="grid" class="grid">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Idade</th>
-						<th>Endereço</th>
-						<th style="width: 125px;">Telefone</th>
-						<th style="width: 240px;">E-Mail</th>
-						<th class="button-col"></th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
+			<div style="overflow-x: auto;">
+				<table id="grid" class="grid" style="min-width: 650px;">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Idade</th>
+							<th>Endereço</th>
+							<th style="width: 125px;">Telefone</th>
+							<th style="width: 240px;">E-Mail</th>
+							<th class="button-col"></th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<div id="divDados" class="section hide">
 			<fieldset id="fieldsetForm" class="crud">
