@@ -8,11 +8,17 @@ var utilities = (function () {
 			body.insertBefore(divDetail, body.firstChild);
 		}
 
-		if (!condition && divDetail.className.indexOf("hide") < 0)
+		if (!condition && divDetail.className.indexOf("hide") < 0) {
 			divDetail.className += " hide";
+			setTimeout(function () {
+				if (divDetail.className.indexOf("hide") >= 0)
+					divDetail.style.display = "none";
+			}, 300);
+		}
 
 		if (condition) {
 		 	divDetail.innerHTML = message;
+ 			divDetail.style.display = "block";
 	 		setTimeout(function () {
 	 			divDetail.className = divDetail.className.replace(/[ ]?hide[ ]?/, "");
  			}, 100);

@@ -56,6 +56,7 @@ var crud = (function () {
 	};
 
 	var closeForm = function () {
+		utilities.detail(false);
 		utilities.hide("#divDados", function () { 
 			utilities.show("#divGrid"); 
 
