@@ -76,6 +76,7 @@ $(function () {
         var prepareField = function (length, percentageMines) {
             clearInterval(_intervalWin);
             $(".mineCamp").removeClass("rotate").empty();
+            $(".field").removeClass("rotate-h");
 
             _lines = length;
             _columns = length;
@@ -117,6 +118,7 @@ $(function () {
             if (allMinesFound() && allFieldsClean()) {
                 backToStart("You WIN!");
                 $(".mineCamp").addClass("rotate");
+                $(".field").addClass("rotate-h");
                 _intervalWin = setInterval(function () {
                     $("body").css("background", randomColor());
 
