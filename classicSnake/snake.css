@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.map {
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+}
+
+.map, .map tbody {
+    border-collapse: collapse;
+}
+.map tr td {
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.map tr td.snake {
+    background-color: #444;
+}
+.map tr td.snake.snake-head {
+    background-color: red;
+}
+.map tr td.snake.snake-tail {
+    background-color: blue;
+}
+
+.map tr td.food {
+    background-color: green;
+}
