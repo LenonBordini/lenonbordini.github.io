@@ -1,6 +1,5 @@
 $(function() {
 	$('.button-collapse').sideNav();
-	$('select').material_select();
 
 	//START DEVBOX - COMBOBOX
 	$("#download").click(function () {
