@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<title>Lenon Bordini</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/prism.css" type="text/css" rel="stylesheet">
+	<link href="css/devBox.message.css" type="text/css" rel="stylesheet">
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script src="js/prism.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/jquery.devBox.message.js"></script>
+</head>
+<body>
+	<nav class="light-blue darken-2" role="navigation">
+		<div class="nav-wrapper container">
+			<a id="logo-container" href="#" class="brand-logo white-text">Logo</a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="index.html"><b>DevBox:ComboBox</b></a></li>
+				<li><a href="indexMessage.html"><b>DevBox:Message</b></a></li>
+				<li><a href="mineField/index.html">MineField</a></li>
+				<li><a href="snake/index.html">Snake</a></li>
+				<li><a href="nightmare/index.html">Nightmare</a></li>
+				<li><a href="classicSnake/index.html">Classic Snake</a></li>
+			</ul>
+			<ul id="nav-mobile" class="side-nav">
+				<li><a href="index.html"><b>DevBox:ComboBox</b></a></li>
+				<li><a href="indexMessage.html"><b>DevBox:Message</b></a></li>
+				<li><a href="mineField/index.html">MineField</a></li>
+				<li><a href="snake/index.html">Snake</a></li>
+				<li><a href="nightmare/index.html">Nightmare</a></li>
+				<li><a href="classicSnake/index.html">Classic Snake</a></li>
+			</ul>
+			<a href="#" data-activates="nav-mobile" class="button-collapse white-text"><i class="material-icons">menu</i></a>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="section">
+			<div class="row">
+				<div class="col s12">
+					<div class="z-depth-1 card-code space-bottom">
+						<h4 class="light">DevBox - Message Plugin</h4>
+						<div class="row">
+							<div class="col s12 l8">
+								<div class="card-content space-bottom">
+									<p>Show pretty messages and easy for developers!</p>
+								</div>
+							</div>
+							<div class="col s12 l4">
+								<a id="downloadMessage" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">DOWNLOAD</a>
+							</div>
+						</div>
+						<div class="card-content">
+							<p>Usage:</p>
+							<pre class="language-html" data-name="html">
+								<code class="language-html">
+    &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
+	&lt;link href="devBox.message.css" type="text/css" rel="stylesheet"&gt;
+	&lt;script src="jquery.devBox.message.js"&gt;&lt;/script&gt;
+								</code>
+							</pre>
+						</div>
+						<div class="card-content">
+							<p>Example 1: Normal way</p>
+							<div class="row">
+								<div class="col s12 l2">
+									<a id="showMe1" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Show Me</a>
+								</div>
+								<div class="col s12 l6" id="handle1"><span>I'm the div "handle1"</span></div>
+							</div>
+						</div>
+						<pre class="language-javascript" data-name="javascript">
+							<code class="language-javascript">
+	$("#handle1").showMessage({
+		//condition: (true: the message appears) | (false: the message hide) | (default true)
+		message: "What the fucking are you doing man?",
+		type: "error" // success|warning|info
+		//delay: time for the message disappear (in milisseconds)
+	});
+	//Short way: $("#handle1").errorMessage("What the fucking are you doing man?");
+						    </code>
+					    </pre>
+					    <div class="card-content" style="margin-top: 60px">
+						    <p>Example 2: Short way</p>
+						    <div class="row">
+							    <div class="col s12 l2">
+								    <a id="showMe2" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Show Me</a>
+							    </div>
+								<div class="col s12 l6" id="handle2"><span>I'm the div "handle2"</span></div>
+						    </div>
+					    </div>
+					    <pre class="language-javascript" data-name="javascript">
+						    <code class="language-javascript">
+	//                           condition                         message
+    $("#handle2").successMessage(new Date().getSeconds() % 2 == 0, "I appear only if the second is par, hahaha!");
+					        </code>
+				        </pre>
+					    <div class="card-content" style="margin-top: 60px">
+						    <p>Example 3: Short way with delay</p>
+						    <div class="row">
+							    <div class="col s12 l2">
+								    <a id="showMe3" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Show Me</a>
+							    </div>
+								<div class="col s12 l6" id="handle3"><span>I'm the div "handle3"</span></div>
+						    </div>
+					    </div>
+					    <pre class="language-javascript" data-name="javascript">
+						    <code class="language-javascript">
+	//Can be: $("#handle3").warningMessage(condition (true|false), message, delay); too
+    $("#handle3").warningMessage("I'll find you, and I'll kill you!", 2000);     
+							</code>
+				        </pre>
+					    <div class="card-content" style="margin-top: 60px">
+						    <p>Example 4: Try yourself!!! :D</p>
+							<div class="row">
+								<div class="input-field col s12 l2">
+									<label for="condition" class="active">Condition</label>
+									<div class="switch">
+										<label>
+										Off
+										<input id="condition" type="checkbox">
+										<span class="lever"></span>
+										On
+										</label>
+									</div>
+								</div>
+								<div class="input-field col s12 l4">
+									<input placeholder="Put your message here (it's obvious')" id="message" type="text">
+									<label for="message">Message</label>
+								</div>
+								<div class="input-field col s12 l4">
+									<label class="active">Type</label>
+									<select id="type" class="browser-default">
+										<option value="0" selected>success</option>
+										<option value="1">error</option>
+										<option value="2">warning</option>
+										<option value="3">info</option>
+									</select>
+								</div>
+								<div class="input-field col s12 l2">
+									<input placeholder="Numbers, please." id="delay" type="text">
+									<label for="delay">Delay</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12 l3">
+								    <a id="tryYourSelf" class="waves-effect waves-light btn light-blue darken-1" style="width: 100%">Try this shit!</a>
+							    </div>
+								<div class="col s12 l6" id="handleTryYourSelf"><span>I'm the div "handleTryYourSelf"</span></div>
+							</div>
+					    </div>
+					    <pre class="language-javascript" data-name="javascript">
+						    <code class="language-javascript">
+	var type = +$("#type").val(),
+		condition = $("#condition").is(":checked"),
+		message = $("#message").val() || "Write something motherfu*$%!",
+		delay = +$("#delay").val() || 0;
+
+	switch (type) {
+		case 0: $("#handleTryYourSelf").successMessage(condition, message, delay); break;
+		case 1: $("#handleTryYourSelf").errorMessage(condition, message, delay); break;
+		case 2: $("#handleTryYourSelf").warningMessage(condition, message, delay); break;
+		case 3: $("#handleTryYourSelf").infoMessage(condition, message, delay); break;
+		default: $("#handleTryYourSelf").errorMessage("You fucked with the code, bitch!"); break;
+	}  
+							</code>
+				        </pre>
+			        </div>
+		        </div>
+	        </div>
+        </div>
+    </div>
+    <footer class="page-footer light-blue darken-2">
+	    <div class="container">
+		    <div class="row">
+			    <div class="col l6 s12">
+				    <h5 class="white-text">DevBox</h5>
+				    <p class="grey-text text-lighten-4">
+						Group of friends making shit in our code
+				    </p>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="footer-copyright">
+		    <div class="container">
+			    Made by <a class="blue-text text-lighten-3" href="http://github.com/LenonBordini">Lenon Bordini</a>
+		    </div>
+	    </div>
+    </footer>
+</body>
+</html>

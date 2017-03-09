@@ -1,8 +1,10 @@
 $(function() {
 	$('.button-collapse').sideNav();
+	$('select').material_select();
 
+	//START DEVBOX - COMBOBOX
 	$("#download").click(function () {
-		window.open("js/jquery.comboBox.js");
+		window.open("js/jquery.devBox.comboBox.js");
 	});
 
 	$("#loadClients").click(function () {
@@ -61,4 +63,44 @@ $(function() {
 			});
 		}, 1000);
 	});
+	//END DEVBOX - COMBOBOX
+
+	//START DEVBOX - MESSAGE
+	$("#downloadMessage").click(function () {
+		window.open("devBoxMessage.rar");
+	});
+
+	$("#showMe1").click(function() {
+		$("#handle1 > span").empty();
+		$("#handle1").showMessage({
+			//condition: (true: the message appears) | (false: the message hide) | (default true)
+			message: "What the fucking are you doing man?",
+			type: "error" // success|warning|info
+			//delay: time for the message disappear (in milisseconds)
+		});
+	});
+	$("#showMe2").click(function() {
+		$("#handle2 > span").empty();
+		$("#handle2").successMessage(new Date().getSeconds() % 2 == 0, "I appear only if the second is par");
+	});
+	$("#showMe3").click(function() {
+		$("#handle3 > span").empty();
+		$("#handle3").warningMessage("I'll find you, and I'll kill you!", 2000);
+	});
+	$("#tryYourSelf").click(function() {
+		$("#handleTryYourSelf > span").empty();
+		var type = +$("#type").val(),
+			condition = $("#condition").is(":checked"),
+			message = $("#message").val() || "Write something motherfu*$%!",
+			delay = +$("#delay").val() || 0;
+
+		switch (type) {
+			case 0: $("#handleTryYourSelf").successMessage(condition, message, delay); break;
+			case 1: $("#handleTryYourSelf").errorMessage(condition, message, delay); break;
+			case 2: $("#handleTryYourSelf").warningMessage(condition, message, delay); break;
+			case 3: $("#handleTryYourSelf").infoMessage(condition, message, delay); break;
+			default: $("#handleTryYourSelf").errorMessage("You fucked with the code, bitch!"); break;
+		}
+	});
+	//END DEVBOX - MESSAGE
 });
