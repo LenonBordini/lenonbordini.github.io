@@ -4,14 +4,13 @@
     margin: 6px 0;
     display: -webkit-flex;
     display: flex;
-    border-radius: 20px;
+    border-radius: 1px;
     cursor: pointer;
 }
 
 .message-content {
     overflow: hidden;
     position: relative;
-    left: 8px;
 }
 
 .message-content span {
@@ -38,7 +37,7 @@
     height: 22px;
     position: relative;
     bottom: 0px;
-    left: 12px;
+    left: 4px;
     display: -webkit-flex;
     -webkit-align-items: center;
     -webkit-justify-content: center;
@@ -47,6 +46,7 @@
     border-radius: 50%;
     padding-top: .1em;
 }
+.message-ico .material-icons { font-size: 18px; }
 
 .pulse {
     -webkit-animation: pulse 0.5s ease;
