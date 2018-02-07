@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Watch Later</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style.login.css" rel="stylesheet">
+        <script src="js/site.js" type="text/javascript"></script>
+        <script src="js/site.login.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="container h-center v-center">
+            <div id="login" class="card" style="max-width: 400px;">
+                <div class="card-title">LOGIN</div>
+                <div class="card-content">
+                    <form method="POST" onsubmit="login.submit(this); return false;">
+                        <div class="w75">
+                            <input type="text" class="input" name="username" autofocus placeholder="Username">
+                        </div>
+                        <div class="w75">
+                            <input type="password" class="input" name="password" placeholder="Password" maxlength="20">
+                            <a href="javascript:void(0)" class="new-user" onclick="login.cardNewUser();">New here?</a>
+                        </div>
+                        <div class="card-button">
+                            <button type="submit" class="button"><span>LOGIN</span> <i class="material-icons">send</i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="newUser" class="card" style="display: none; max-width: 400px;">
+                <div class="card-title">
+                    <i class="material-icons card-back-button" onclick="login.cardLogin();">arrow_back</i> NEW USER
+                </div>
+                <div class="card-content">
+                    <form method="POST" onsubmit="login.submitNew(this); return false;">
+                        <div class="w75">
+                            <input type="text" class="input" name="new_username" autofocus placeholder="Username">
+                        </div>
+                        <div class="w75">
+                            <input type="password" class="input" name="new_password" placeholder="Password" onkeyup="login.passwordLevel(this, 'new_pw_level');" maxlength="20">
+                            <span class="password-level" name="new_pw_level"></span>
+                        </div>
+                        <div class="w75">
+                            <input type="password" class="input" name="new_password_confirm" placeholder="Confirm Password" maxlength="20">
+                        </div>
+                        <div class="card-button">
+                            <button type="submit" class="button"><span>SUBMIT</span> <i class="material-icons">done</i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

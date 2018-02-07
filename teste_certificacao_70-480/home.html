@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Watch Later</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/site.js" type="text/javascript"></script>
+        <script src="js/site.home.js" type="text/javascript"></script>
+    </head>
+    <body onload="home.init();">
+        <nav>
+            <div class="top-menu">
+                <div class="button-menu" onclick="site.toggleClass('nav', 'menu-opened');">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <ul>
+                <li title="Action"><i class="material-icons">movie_filter</i> Action</li>
+                <li title="Adventure"><i class="material-icons">movie_filter</i> Adventure</li>
+                <li title="Comedy"><i class="material-icons">movie_filter</i> Comedy</li>
+                <li title="Drama"><i class="material-icons">movie_filter</i> Drama</li>
+                <li title="Educational"><i class="material-icons">movie_filter</i> Educational</li>
+                <li title="Erotic"><i class="material-icons">movie_filter</i> Erotic</li>
+                <li title="Science Fiction"><i class="material-icons">movie_filter</i> Science Fiction</li>
+                <li title="War"><i class="material-icons">movie_filter</i> War</li>
+                <li title="Kids"><i class="material-icons">movie_filter</i> Kids</li>
+                <li title="Musicals"><i class="material-icons">movie_filter</i> Musicals</li>
+                <li title="Police"><i class="material-icons">movie_filter</i> Police</li>
+                <li title="Romance"><i class="material-icons">movie_filter</i> Romance</li>
+                <li title="Thriller"><i class="material-icons">movie_filter</i> Thriller</li>
+                <li title="Terror"><i class="material-icons">movie_filter</i> Terror</li>
+                <li title="Sair"><i class="material-icons logout" onclick="home.logout();">highlight_off</i> Logout</li>
+            </ul>
+        </nav>
+        <main class="container h-center">
+            <div class="add-movie" title="Add" onclick="site.modal('add-movie');"><i class="material-icons">add</i></div>
+
+            <div id="add-movie" style="display: none;">
+                <form method="POST" onsubmit="home.submitMovie(this); return false;" style="width: 500px;">
+                    <div class="add-poster">
+                        <i class="material-icons">image</i>
+                    </div>
+                    <div class="w75 off25">
+                        <div class="w70">
+                            <input type="text" class="input" name="name" placeholder="Name" maxlength="100" required>
+                        </div>
+                        <div class="w30">
+                            <select class="select" name="category" required>
+                                <option value="" selected>Category</option>
+                                <option value="1">Action</option>
+                                <option value="2">Adventure</option>
+                                <option value="3">Comedy</option>
+                                <option value="4">Drama</option>
+                                <option value="5">Educational</option>
+                                <option value="6">Erotic</option>
+                                <option value="7">Science Fiction</option>
+                                <option value="8">War</option>
+                                <option value="9">Kids</option>
+                                <option value="10">Musicals</option>
+                                <option value="11">Police</option>
+                                <option value="12">Romance</option>
+                                <option value="13">Thriller</option>
+                                <option value="14">Terror</option>
+                            </select>
+                        </div>
+                        <div class="w100">
+                            <input type="text" class="input" name="poster" placeholder="Url Poster" onchange="home.loadImage(this.value, '.add-poster', this);" required>
+                        </div>
+                        <div class="w100">
+                            <input type="text" class="input" name="trailler" placeholder="Url Trailler">
+                        </div>
+                    </div>
+                    <div class="w100">
+                        <label class="label">Watched?</label>
+                        <input type="radio" name="watch" value="Y" id="watch_Y"><label for="watch_Y">Yes</label>
+                        <input type="radio" name="watch" value="N" id="watch_N" checked><label for="watch_N">No</label>
+                        <input type="text" class="input" name="watchDate" placeholder="Watch Date __/__/____" pattern="\d{2}\/\d{2}\/\d{4}" style="width: 35%; display: inline-block; margin-left: 15px; text-align: center;">
+                    </div>
+                    <div class="w100 range">
+                        <label class="label">Quality:</label>
+                        <div>
+                            <input type="range" name="quality" min="1" max="10" value="5" oninput="$('#quality').innerHTML=this.value;">
+                        </div>
+                        <label id="quality" style="margin-left: 5px;">5</label>
+                    </div>
+                    <div class="w100 textarea">
+                        <textarea rows="4" placeholder="Description"></textarea>
+                    </div>
+                    <div class="card-button">
+                        <button type="submit" class="button"><span>SUBMIT</span> <i class="material-icons">done</i></button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="view-trailler" style="display: none;">
+                <iframe id="trailler" width="854" height="480" frameborder="0" allowfullscreen></iframe>
+                <!--
+                    EXEMPLO COM A TAG VIDEO 
+                    <video width="854" height="480" controls>
+                        <source src="movies/movie1.mp4" type="video/mp4">
+                        <source src="movies/movie1.ogg" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                -->
+            </div>
+        </main>
+        <header>
+            <h3 class="title">WATCH LATER <i class="material-icons">local_movies</i></h3>
+        </header>
+    </body>
+</html>

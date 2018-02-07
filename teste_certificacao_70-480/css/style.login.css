@@ -1,0 +1,51 @@
+.card-back-button {
+    float: left;
+    cursor: pointer;
+    animation: back 0.5s ease-in infinite;
+}
+
+.card-title {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+.card-content {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.card-content .input {
+    text-align: center;
+}
+
+.new-user {
+    color: #0087ff;
+    font-size: 11px;
+    float: right;
+    top: -11px;
+    position: relative;
+}
+
+@keyframes back {
+    0% { left: 10px; }
+    50% { left: 15px; }
+    100% { left: 10px; }
+}
+
+.password-level {
+    float: left;
+    font-size: 11px;
+    position: absolute;
+    margin-top: -12px;
+    margin-left: -133px;
+    font-weight: bold;
+}
+.password-level.l1 { color: rgb(255, 78, 78); }
+.password-level.l2 { color: rgb(255, 150, 13); }
+.password-level.l3 { color: rgb(15, 182, 0); }
+.password-level.l4 { color: rgb(24, 121, 0); }
