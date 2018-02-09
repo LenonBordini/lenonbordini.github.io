@@ -1,7 +1,7 @@
 window.site = (function () {
-    var $ = function(selector) {
+    var $ = function(selector, list) {
         var elements = document.querySelectorAll(selector);
-        return elements.length > 1 ? elements : elements[0];
+        return elements.length > 1 || list ? elements : elements[0];
     };
 
     var toogleCards = function (card1, card2, time, callback) {
@@ -205,6 +205,17 @@ window.site = (function () {
         xhttp.send((options.method == "POST" || options.method == "PUT") && options.data ? JSON.stringify(options.data) : undefined);
     };
 
+    var removeClass = function(element, $class) {
+        element.className = (element.className || "").split(" ").filter(function(c) { return c && c != $class; }).join(" ");
+    };
+
+    var addClass = function(element, $class) {
+        var classes = (element.className || "").split(" ");
+        if (classes.every(function(c) { return c != $class; }))
+            classes.push($class);
+        element.className = classes.join(" ").trim();
+    };
+
     return {
         $: $,
         toogleCards: toogleCards,
@@ -214,6 +225,8 @@ window.site = (function () {
         closeModal: closeModal,
         create: create,
         ajax: ajax,
+        removeClass: removeClass,
+        addClass: addClass,
 
         error: function(message) { toast(message, "error"); },
         warning: function(message) { toast(message, "warning"); },

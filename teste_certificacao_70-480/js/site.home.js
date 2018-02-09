@@ -36,14 +36,10 @@ window.home = (function () {
     };
 
     function loadMovies() {
-        var movies = $("main .card.card-movie");
-        if (movies) {
-            if (!movies.length)
-                movies.remove();
-            else
-                for (var i = 0; i < movies.length; i++)
-                    movies[i].remove();
-        }
+        var moviesCard = $("main .card.card-movie", true);
+        if (moviesCard.length)
+            for (var i = 0; i < moviesCard.length; i++)
+                moviesCard[i].remove();
 
         site.ajax({
             method: "GET",
@@ -87,12 +83,26 @@ window.home = (function () {
                     cardMovieContent.appendChild(divTrailler);
                     card.appendChild(cardMovieContent);
                     card.appendChild(cardPoster);
+                    card.idCategory = movie.idCategory;
                     main.appendChild(card);
 
                     loadImage(movie.urlPoster, cardPoster);
                 });
             }
         });
+    }
+
+    function filterMovies(idCategory) {
+        var cardMovies = $(".card.card-movie", true), hideCount = 0;
+        for (var i = 0; i < cardMovies.length; i++) {
+            cardMovies[i].style.display = "block";
+            if (idCategory && cardMovies[i].idCategory != idCategory){
+                cardMovies[i].style.display = "none";
+                hideCount++;
+            }
+        }
+
+        $(".no-movie").style.display = hideCount == cardMovies.length ? "block" : "none";
     }
 
     var init = function() {
@@ -109,7 +119,21 @@ window.home = (function () {
                     $("[name='idCategory']").appendChild(new Option(category.name, category.id));
                     $("#nav-options").appendChild(site.create("li", {
                         title: category.name,
-                        innerHTML: '<i class="material-icons">movie_filter</i> ' + category.name
+                        innerHTML: '<i class="material-icons">movie_filter</i> ' + category.name,
+                        onclick: function() {
+                            if (this.className && this.className.indexOf("selected") >= 0) {
+                                site.removeClass(this, "selected");
+                                filterMovies();
+                                return;
+                            }
+
+                            var li = $("li.selected");
+                            if (li)
+                                site.removeClass(li, "selected");
+                            
+                            site.addClass(this, "selected");
+                            filterMovies(category.id);
+                        }
                     }));
                 });
 

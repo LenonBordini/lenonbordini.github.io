@@ -57,6 +57,7 @@ window.login = (function () {
                 password: pw
             },
             success: function(data) {
+                site.success("New user created successfully");
                 cardLogin(function() {
                     $("[name='username']").value = form.new_username.value;
                     $("[name='password']").value = "";

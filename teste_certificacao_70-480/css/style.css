@@ -261,6 +261,9 @@ nav ul li i.material-icons {
     top: 8px;
     left: 15px;
 }
+nav ul li.selected {
+    background: #bbb !important;
+}
 
 .logout {
     color: rgb(255, 91, 91);

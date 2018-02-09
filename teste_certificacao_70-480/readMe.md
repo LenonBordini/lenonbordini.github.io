@@ -9,6 +9,7 @@ RESPONSE 200 | "dd/MM/yyyy HH:mm:ss"
 ### api/user
 ```js
       METHOD | POST
+        BODY | { username: "", password: "" }
 RESPONSE 200 |
 RESPONSE 400 | ["error1", "error2"]
 ```
