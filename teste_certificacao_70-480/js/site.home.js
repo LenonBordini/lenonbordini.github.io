@@ -35,7 +35,7 @@ window.home = (function () {
         img.src = src + "?d=" + new Date().getTime();
     };
 
-    function loadMovies() {
+    function loadMovies(callback) {
         var moviesCard = $("main .card.card-movie", true);
         if (moviesCard.length)
             for (var i = 0; i < moviesCard.length; i++)
@@ -88,6 +88,9 @@ window.home = (function () {
 
                     loadImage(movie.urlPoster, cardPoster);
                 });
+
+                if (typeof callback === "function")
+                    callback();
             }
         });
     }
@@ -111,6 +114,10 @@ window.home = (function () {
             return;
         }
 
+        var dark = localStorage.darkTheme && JSON.parse(localStorage.darkTheme).some(function(u) { return u.id == idUser; });
+        if (dark)
+            $("body").className = "dark";
+
         site.ajax({
             method: "GET",
             url: "category",
@@ -120,6 +127,7 @@ window.home = (function () {
                     $("#nav-options").appendChild(site.create("li", {
                         title: category.name,
                         innerHTML: '<i class="material-icons">movie_filter</i> ' + category.name,
+                        idCategory: category.id,
                         onclick: function() {
                             if (this.className && this.className.indexOf("selected") >= 0) {
                                 site.removeClass(this, "selected");
@@ -137,19 +145,39 @@ window.home = (function () {
                     }));
                 });
 
+                $("#nav-options").appendChild(site.create("li", { className: "margin" }));
+                $("#nav-options").appendChild(site.create("li", {
+                    title: "Dark Theme",
+                    innerHTML: '<i class="material-icons">insert_photo</i> Dark Theme',
+                    className: dark ? "selected" : undefined,
+                    onclick: function() {
+                        var darkTheme = localStorage.darkTheme ? JSON.parse(localStorage.darkTheme) : [];
+
+                        if (this.className.indexOf("selected") >= 0) {
+                            darkTheme = darkTheme.filter(function(u) { return u.id != idUser; });
+                            site.removeClass(this, "selected");
+                            site.removeClass($("body"), "dark");
+                        } else {
+                            darkTheme.push({ id: idUser });
+                            site.addClass(this, "selected");
+                            site.addClass($("body"), "dark");
+                        }
+
+                        localStorage.darkTheme = JSON.stringify(darkTheme);
+                    }
+                }));
                 $("#nav-options").appendChild(site.create("li", {
                     title: "Logout",
-                    innerHTML: '<i class="material-icons logout" onclick="home.logout();">highlight_off</i> Logout'
+                    innerHTML: '<i class="material-icons logout">highlight_off</i> Logout',
+                    onclick: function() {
+                        delete sessionStorage.idUser;
+                        location.reload();
+                    }
                 }));
             }
         });
 
         loadMovies();
-    };
-
-    var logout = function() {
-        delete sessionStorage.idUser;
-        location.reload();
     };
 
     var modalMovie = function(movie) {
@@ -196,7 +224,10 @@ window.home = (function () {
             success: function() {
                 site.success("Movie saved successfully");
                 site.closeModal();
-                loadMovies();
+                loadMovies(function() {
+                    var li = $("li.selected");
+                    filterMovies(li ? li.idCategory : undefined);
+                });
             }
         });
     };
@@ -221,7 +252,6 @@ window.home = (function () {
 
     return {
         init: init,
-        logout: logout,
         loadImage: loadImage,
         modalMovie: modalMovie,
         submitMovie: submitMovie,

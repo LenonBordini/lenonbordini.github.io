@@ -264,6 +264,10 @@ nav ul li i.material-icons {
 nav ul li.selected {
     background: #bbb !important;
 }
+nav ul li.margin {
+    background: #fff;
+    height: 10px;
+}
 
 .logout {
     color: rgb(255, 91, 91);
@@ -456,3 +460,27 @@ main {
 .no-movie-add:hover {
     background: #009ae7;
 }
+
+body.dark {
+    color: #fff;
+    background: #383838;
+}
+body.dark nav {
+    background: #2b2b2b;
+}
+body.dark nav ul li.margin {
+    background: #000;
+}
+body.dark nav ul li {
+    background: rgb(33, 33, 33);
+}
+body.dark nav ul li:hover, body.dark nav ul li.selected {
+    background: rgb(20, 20, 20) !important;
+}
+body.dark .card {
+    box-shadow: 2px 2px 2px #000;
+}
+body.dark .modal-wrap {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+

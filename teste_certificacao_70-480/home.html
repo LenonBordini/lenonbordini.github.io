@@ -23,7 +23,7 @@
         <main class="container h-center">
             <div class="no-movie">
                 <i class="material-icons no-movie-sad">sentiment_very_dissatisfied</i><br>
-                Any movie was found. Try add one! 
+                No movies found. Try add one! 
                 <i class="material-icons no-movie-add" onclick="home.modalMovie();">add</i>
             </div>
 
@@ -45,17 +45,17 @@
                             </select>
                         </div>
                         <div class="w100">
-                            <input type="text" class="input" name="urlPoster" placeholder="Url Poster" onchange="home.loadImage(this.value, '.add-poster', this);" required>
+                            <input type="text" class="input" name="urlPoster" placeholder="Url Poster" maxlength="200" onchange="home.loadImage(this.value, '.add-poster', this);" required>
                         </div>
                         <div class="w100">
-                            <input type="text" class="input" name="urlTrailler" placeholder="Url Trailler">
+                            <input type="text" class="input" name="urlTrailler" placeholder="Url Trailler" maxlength="200">
                         </div>
                     </div>
                     <div class="w100">
                         <label class="label">Watched?</label>
                         <input type="radio" name="watched" value="1" id="watched_Y"><label for="watched_Y">Yes</label>
                         <input type="radio" name="watched" value="0" id="watched_N" checked><label for="watched_N">No</label>
-                        <input type="text" class="input" name="watchedDate" placeholder="Watch Date __/__/____" pattern="\d{2}\/\d{2}\/\d{4}" style="width: 35%; display: inline-block; margin-left: 15px; text-align: center;">
+                        <input type="text" class="input" name="watchedDate" placeholder="Watched Date __/__/____" pattern="\d{2}\/\d{2}\/\d{4}" style="width: 35%; display: inline-block; margin-left: 15px; text-align: center;">
                     </div>
                     <div class="w100 range">
                         <label class="label">Quality:</label>
@@ -65,7 +65,7 @@
                         <label id="quality" style="margin-left: 5px;">5</label>
                     </div>
                     <div class="w100 textarea">
-                        <textarea rows="4" placeholder="Description" name="description"></textarea>
+                        <textarea rows="4" placeholder="Description" name="description" maxlength="200"></textarea>
                     </div>
                     <div class="card-button">
                         <button type="button" class="button red" onclick="home.deleteMovie();"><span>DELETE</span> <i class="material-icons">delete</i></button>
