@@ -62,14 +62,14 @@
                         <div>
                             <input type="range" name="quality" min="0" max="10" value="5" oninput="$('#quality').innerHTML=this.value;">
                         </div>
-                        <label id="quality" style="margin-left: 5px;">5</label>
+                        <label id="quality" style="margin-left: 5px; color: #555;">5</label>
                     </div>
                     <div class="w100 textarea">
                         <textarea rows="4" placeholder="Description" name="description" maxlength="200"></textarea>
                     </div>
                     <div class="card-button">
-                        <button type="button" class="button red" onclick="home.deleteMovie();"><span>DELETE</span> <i class="material-icons">delete</i></button>
-                        <button type="submit" class="button"><span>SUBMIT</span> <i class="material-icons">done</i></button>
+                        <button type="button" class="button red" name="btn_delete_movie" onclick="home.deleteMovie();"><span>DELETE</span> <i class="material-icons">delete</i></button>
+                        <button type="submit" class="button" name="btn_submit_movie"><span>SUBMIT</span> <i class="material-icons">done</i></button>
                     </div>
                 </form>
             </div>

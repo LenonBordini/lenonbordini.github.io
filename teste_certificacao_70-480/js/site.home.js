@@ -57,7 +57,7 @@ window.home = (function () {
                 movies.forEach(function(movie) {
                     var card = site.create("div", { className: "card card-movie", style: { height: "300px" } }),
                     cardMovieContent = site.create("div", { className: "movie-content", innerHTML: '<i class="material-icons">play_circle_outline</i>' }),
-                    buttonDetail = site.create("button", { className: "button w75", innerHTML: "DETALHES" }),
+                    buttonDetail = site.create("button", { className: "button w75", innerHTML: "DETAILS" }),
                     divDetail = site.create("div"),
                     buttonTrailler = site.create("button", { className: "button w75", innerHTML: "TRAILLER" }),
                     divTrailler = site.create("div"),
@@ -117,6 +117,8 @@ window.home = (function () {
         var dark = localStorage.darkTheme && JSON.parse(localStorage.darkTheme).some(function(u) { return u.id == idUser; });
         if (dark)
             $("body").className = "dark";
+
+        $("#trailler").src = "";
 
         site.ajax({
             method: "GET",
@@ -209,6 +211,7 @@ window.home = (function () {
         }
 
         site.ajax({
+            button: form.btn_submit_movie,
             method: method,
             url: url,
             data: {
@@ -240,6 +243,7 @@ window.home = (function () {
         }
 
         site.ajax({
+            button: form.btn_delete_movie,
             method: "DELETE",
             url: "user/" + idUser + "/movie/" + form.id.value,
             success: function() {

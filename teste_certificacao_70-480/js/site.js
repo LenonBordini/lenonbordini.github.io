@@ -180,6 +180,13 @@ window.site = (function () {
             options.url += params.join("&");
         }
 
+        if (options.button) {
+            if (options.button.disabled)
+                return;
+                
+            options.button.disabled = true;
+        }
+
         var xhttp = new XMLHttpRequest();
         xhttp.open(options.method, "https://watchlater.azurewebsites.net/api/" + options.url, true);
 
@@ -199,6 +206,11 @@ window.site = (function () {
                                 site.error(errors[i]);
                     } catch(e) { }
                 }
+                if (typeof options.complete === "function")
+                    options.complete(xhttp.responseText);
+                
+                if (options.button)
+                    setTimeout(function() { options.button.disabled = false; }, 100);
             }
         };
 

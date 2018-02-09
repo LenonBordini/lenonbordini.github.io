@@ -12,6 +12,7 @@ window.login = (function () {
         }
 
         site.ajax({
+            button: form.btn_login,
             method: "POST", 
             url: "login",
             data: {
@@ -50,6 +51,7 @@ window.login = (function () {
         }
 
         site.ajax({
+            button: form.btn_new,
             method: "POST", 
             url: "user",
             data: {

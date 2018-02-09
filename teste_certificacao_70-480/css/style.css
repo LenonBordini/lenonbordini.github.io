@@ -58,6 +58,9 @@ div[class^=w] { display: inline-block; }
     color: #fff;
     margin: 2px 0;
 }
+.button:disabled {
+    background: #ddd;
+}
 .button:hover {
     background-color: #009ae7;
     box-shadow: 0 0 2px #333;
@@ -483,4 +486,6 @@ body.dark .card {
 body.dark .modal-wrap {
     background-color: rgba(0, 0, 0, 0.6);
 }
-
+body.dark .label, .modal-close {
+    color: #555;
+}
