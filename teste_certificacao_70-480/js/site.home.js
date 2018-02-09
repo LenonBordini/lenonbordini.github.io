@@ -76,7 +76,7 @@ window.home = (function () {
 
                     buttonTrailler.addEventListener("click", function(e) {
                         e.stopPropagation();
-                        $("#trailler").src = this.movie.urlTrailler + "?autoplay=1";
+                        $("#trailler").src = movie.urlTrailler + "?autoplay=1";
                         site.modal("view-trailler", function() { $("#trailler").src = ""; });
                     });
                     cardMovieContent.addEventListener("click", function() { buttonTrailler.click(); });
