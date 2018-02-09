@@ -60,6 +60,7 @@ div[class^=w] { display: inline-block; }
 }
 .button:hover {
     background-color: #009ae7;
+    box-shadow: 0 0 2px #333;
 }
 .button span {
     position: relative;
@@ -67,6 +68,12 @@ div[class^=w] { display: inline-block; }
 }
 .button i {
     font-size: 22px;
+}
+.button.red {
+    background-color: #ff4040;
+}
+.button.red:hover {
+    background-color: #ff1515;
 }
 
 .label {
@@ -420,4 +427,29 @@ main {
 
 .spin {
     animation: spin 0.5s linear infinite;
+}
+
+.no-movie {
+    text-align: center;
+    font-size: 30px;
+    display: none;
+}
+.no-movie-sad {
+    font-size: 150px;
+}
+.no-movie-add {
+    font-size: 35px;
+    position: relative;
+    top: 6px;
+    left: 6px;
+    background: #00abff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px #333;
+    color: #fff;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.no-movie-add:hover {
+    background: #009ae7;
 }

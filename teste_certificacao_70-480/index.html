@@ -10,12 +10,12 @@
         <script src="js/site.js" type="text/javascript"></script>
         <script src="js/site.login.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body onload="login.init();">
         <div class="container h-center v-center">
             <div id="login" class="card" style="max-width: 400px;">
                 <div class="card-title">LOGIN</div>
                 <div class="card-content">
-                    <form method="POST" onsubmit="login.submit(this); return false;">
+                    <form onsubmit="login.submit(this); return false;">
                         <div class="w75">
                             <input type="text" class="input" name="username" autofocus placeholder="Username">
                         </div>
@@ -34,7 +34,7 @@
                     <i class="material-icons card-back-button" onclick="login.cardLogin();">arrow_back</i> NEW USER
                 </div>
                 <div class="card-content">
-                    <form method="POST" onsubmit="login.submitNew(this); return false;">
+                    <form onsubmit="login.submitNew(this); return false;">
                         <div class="w75">
                             <input type="text" class="input" name="new_username" autofocus placeholder="Username">
                         </div>

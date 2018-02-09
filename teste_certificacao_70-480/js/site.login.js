@@ -1,4 +1,9 @@
 window.login = (function () {
+    var init = function() {
+        if (sessionStorage.idUser)
+            location.href = "home.html";
+    };
+
     var submit = function (form) {
         var pw = form.password.value;
         if (!form.username.value.trim() || !pw) {
@@ -6,16 +11,27 @@ window.login = (function () {
             return;
         }
 
-        if (form.username.value.toLowerCase() != "admin" || pw != "Admin123@") {
-            site.error("Username and/or password invalids");
-            return;
-        }
-
-        location.href = "home.html";
+        site.ajax({
+            method: "POST", 
+            url: "login",
+            data: {
+                username: form.username.value,
+                password: pw
+            },
+            success: function(data) {
+                sessionStorage.idUser = JSON.parse(data);
+                location.href = "home.html";
+            }
+        });
     };
 
     var submitNew = function (form) {
-        var pw = form.password.value;
+        if (form.new_username.value.length < 7 || form.new_username.value.length > 20) {
+            site.warning("Username must be 8 to 20 characters");
+            return;
+        }
+
+        var pw = form.new_password.value;
         if (pw.indexOf(" ") >= 0) {
             site.warning("Password cannot contain white spaces");
             return;
@@ -24,10 +40,30 @@ window.login = (function () {
             site.warning("Password must be 8 to 20 characters");
             return;
         }
-        if (passwordLevel(form.password) <= 1){
+        if (passwordLevel(form.new_password) <= 1) {
             site.warning("Password cannot be low. Use characters uppercase, lowercase, number and even special characters");
             return;
         }
+        if (pw != form.new_password_confirm.value) {
+            site.warning("Password is diferent from Confirm Password");
+            return;
+        }
+
+        site.ajax({
+            method: "POST", 
+            url: "user",
+            data: {
+                username: form.new_username.value,
+                password: pw
+            },
+            success: function(data) {
+                cardLogin(function() {
+                    $("[name='username']").value = form.new_username.value;
+                    $("[name='password']").value = "";
+                    $("[name='password']").focus();
+                });
+            }
+        });
     };
 
     var cardNewUser = function() {
@@ -36,9 +72,11 @@ window.login = (function () {
         });
     };
 
-    var cardLogin = function() {
+    var cardLogin = function(callback) {
         site.toogleCards('newUser', 'login', 400, function() {
             $("[name='username']").focus();
+            if (typeof callback === "function")
+                callback();
         });
     };
 
@@ -66,6 +104,7 @@ window.login = (function () {
     };
 
     return {
+        init: init,
         submit: submit,
         submitNew: submitNew,
         cardNewUser: cardNewUser,

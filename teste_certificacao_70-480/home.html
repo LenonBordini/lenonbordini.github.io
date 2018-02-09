@@ -18,79 +18,57 @@
                     <div></div>
                 </div>
             </div>
-            <ul>
-                <li title="Action"><i class="material-icons">movie_filter</i> Action</li>
-                <li title="Adventure"><i class="material-icons">movie_filter</i> Adventure</li>
-                <li title="Comedy"><i class="material-icons">movie_filter</i> Comedy</li>
-                <li title="Drama"><i class="material-icons">movie_filter</i> Drama</li>
-                <li title="Educational"><i class="material-icons">movie_filter</i> Educational</li>
-                <li title="Erotic"><i class="material-icons">movie_filter</i> Erotic</li>
-                <li title="Science Fiction"><i class="material-icons">movie_filter</i> Science Fiction</li>
-                <li title="War"><i class="material-icons">movie_filter</i> War</li>
-                <li title="Kids"><i class="material-icons">movie_filter</i> Kids</li>
-                <li title="Musicals"><i class="material-icons">movie_filter</i> Musicals</li>
-                <li title="Police"><i class="material-icons">movie_filter</i> Police</li>
-                <li title="Romance"><i class="material-icons">movie_filter</i> Romance</li>
-                <li title="Thriller"><i class="material-icons">movie_filter</i> Thriller</li>
-                <li title="Terror"><i class="material-icons">movie_filter</i> Terror</li>
-                <li title="Sair"><i class="material-icons logout" onclick="home.logout();">highlight_off</i> Logout</li>
-            </ul>
+            <ul id="nav-options"></ul>
         </nav>
         <main class="container h-center">
-            <div class="add-movie" title="Add" onclick="site.modal('add-movie');"><i class="material-icons">add</i></div>
+            <div class="no-movie">
+                <i class="material-icons no-movie-sad">sentiment_very_dissatisfied</i><br>
+                Any movie was found. Try add one! 
+                <i class="material-icons no-movie-add" onclick="home.modalMovie();">add</i>
+            </div>
+
+            <div class="add-movie" title="Add" onclick="home.modalMovie();"><i class="material-icons">add</i></div>
 
             <div id="add-movie" style="display: none;">
-                <form method="POST" onsubmit="home.submitMovie(this); return false;" style="width: 500px;">
+                <form id="formMovie" method="POST" onsubmit="home.submitMovie(this); return false;" style="width: 500px;">
                     <div class="add-poster">
                         <i class="material-icons">image</i>
                     </div>
                     <div class="w75 off25">
+                        <input type="hidden" name="id">
                         <div class="w70">
                             <input type="text" class="input" name="name" placeholder="Name" maxlength="100" required>
                         </div>
                         <div class="w30">
-                            <select class="select" name="category" required>
+                            <select class="select" name="idCategory" required>
                                 <option value="" selected>Category</option>
-                                <option value="1">Action</option>
-                                <option value="2">Adventure</option>
-                                <option value="3">Comedy</option>
-                                <option value="4">Drama</option>
-                                <option value="5">Educational</option>
-                                <option value="6">Erotic</option>
-                                <option value="7">Science Fiction</option>
-                                <option value="8">War</option>
-                                <option value="9">Kids</option>
-                                <option value="10">Musicals</option>
-                                <option value="11">Police</option>
-                                <option value="12">Romance</option>
-                                <option value="13">Thriller</option>
-                                <option value="14">Terror</option>
                             </select>
                         </div>
                         <div class="w100">
-                            <input type="text" class="input" name="poster" placeholder="Url Poster" onchange="home.loadImage(this.value, '.add-poster', this);" required>
+                            <input type="text" class="input" name="urlPoster" placeholder="Url Poster" onchange="home.loadImage(this.value, '.add-poster', this);" required>
                         </div>
                         <div class="w100">
-                            <input type="text" class="input" name="trailler" placeholder="Url Trailler">
+                            <input type="text" class="input" name="urlTrailler" placeholder="Url Trailler">
                         </div>
                     </div>
                     <div class="w100">
                         <label class="label">Watched?</label>
-                        <input type="radio" name="watch" value="Y" id="watch_Y"><label for="watch_Y">Yes</label>
-                        <input type="radio" name="watch" value="N" id="watch_N" checked><label for="watch_N">No</label>
-                        <input type="text" class="input" name="watchDate" placeholder="Watch Date __/__/____" pattern="\d{2}\/\d{2}\/\d{4}" style="width: 35%; display: inline-block; margin-left: 15px; text-align: center;">
+                        <input type="radio" name="watched" value="1" id="watched_Y"><label for="watched_Y">Yes</label>
+                        <input type="radio" name="watched" value="0" id="watched_N" checked><label for="watched_N">No</label>
+                        <input type="text" class="input" name="watchedDate" placeholder="Watch Date __/__/____" pattern="\d{2}\/\d{2}\/\d{4}" style="width: 35%; display: inline-block; margin-left: 15px; text-align: center;">
                     </div>
                     <div class="w100 range">
                         <label class="label">Quality:</label>
                         <div>
-                            <input type="range" name="quality" min="1" max="10" value="5" oninput="$('#quality').innerHTML=this.value;">
+                            <input type="range" name="quality" min="0" max="10" value="5" oninput="$('#quality').innerHTML=this.value;">
                         </div>
                         <label id="quality" style="margin-left: 5px;">5</label>
                     </div>
                     <div class="w100 textarea">
-                        <textarea rows="4" placeholder="Description"></textarea>
+                        <textarea rows="4" placeholder="Description" name="description"></textarea>
                     </div>
                     <div class="card-button">
+                        <button type="button" class="button red" onclick="home.deleteMovie();"><span>DELETE</span> <i class="material-icons">delete</i></button>
                         <button type="submit" class="button"><span>SUBMIT</span> <i class="material-icons">done</i></button>
                     </div>
                 </form>

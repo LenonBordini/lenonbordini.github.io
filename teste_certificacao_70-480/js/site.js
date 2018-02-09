@@ -153,6 +153,9 @@ window.site = (function () {
             }, 300);
         });
     };
+    var closeModal = function() {
+        $(".modal-wrap").click();
+    };
 
     var create = function(element, properties) {
         var e = document.createElement(element);
@@ -168,20 +171,38 @@ window.site = (function () {
         return e;
     };
 
-    var ajax = function(method, url, callbackSuccess, callbackError) {
+    var ajax = function(options) {
+        if (options.method == "GET" && options.data && Object.keys(options.data).length) {
+            options.url += "?";
+            var params = [];
+            for (var prop in options.data)
+                params.push(prop + "=" + options.data[prop]);
+            options.url += params.join("&");
+        }
+
         var xhttp = new XMLHttpRequest();
+        xhttp.open(options.method, "http://localhost:9000/api/" + options.url, true);
+
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4) {
-                if (this.status != 200) {
-                    if (typeof callbackSuccess === "function")
-                        callbackSuccess(xhttp.responseText);
-                } else if (typeof callbackError === "function")
-                    callbackError(xhttp.responseText);
+                if (this.status == 200) {
+                    if (typeof options.success === "function")
+                        options.success(xhttp.responseText);
+                } else {
+                    if (typeof options.error === "function")
+                        options.error(xhttp.responseText);
+                    try {
+                        var errors = JSON.parse(xhttp.responseText);
+                        if (errors && errors.length)
+                            for (var i = 0; i < errors.length; i++)
+                                site.error(errors[i]);
+                    } catch(e) { }
+                }
             }
-          };
-        xhttp.open(method, url, true);
-        xhttp.send();
+        };
+
+        xhttp.send((options.method == "POST" || options.method == "PUT") && options.data ? JSON.stringify(options.data) : undefined);
     };
 
     return {
@@ -190,6 +211,7 @@ window.site = (function () {
         toggleClass: toggleClass,
         toast: toast,
         modal: modal,
+        closeModal: closeModal,
         create: create,
         ajax: ajax,
 
