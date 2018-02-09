@@ -38,6 +38,10 @@ div[class^=w] { display: inline-block; }
     border-bottom: 1px solid #ccc;
     outline: none;
 }
+input[type=radio] + label, input[type=checkbox] + label {
+    color: #555;
+}
+
 .select {
     position: relative;
     top: -1px;
