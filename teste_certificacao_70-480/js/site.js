@@ -181,7 +181,7 @@ window.site = (function () {
         }
 
         var xhttp = new XMLHttpRequest();
-        xhttp.open(options.method, "http://localhost:9000/api/" + options.url, true);
+        xhttp.open(options.method, "https://watchlater.azurewebsites.net/api/" + options.url, true);
 
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
