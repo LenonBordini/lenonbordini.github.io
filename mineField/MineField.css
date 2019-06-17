@@ -115,14 +115,14 @@ body {
 .field.mineFound { background: linear-gradient(#ddd, gold); }
 .field.doubts::after { content: '?'; color: #000; }
 .field[class*=has] { color: #000; }
-.field.has1::after { content: '1'; text-shadow: 0 0 3px blue; }
-.field.has2::after { content: '2'; text-shadow: 0 0 3px green; }
-.field.has3::after { content: '3'; text-shadow: 0 0 3px darkgoldenrod; }
-.field.has4::after { content: '4'; text-shadow: 0 0 3px red; }
-.field.has5::after { content: '5'; text-shadow: 0 0 3px orange; }
-.field.has6::after { content: '6'; text-shadow: 0 0 3px purple; }
-.field.has7::after { content: '7'; text-shadow: 0 0 3px chocolate; }
-.field.has8::after { content: '8'; text-shadow: 0 0 3px magenta; }
+.field.has1::after { content: '1'; color: blue; }
+.field.has2::after { content: '2'; color: green; }
+.field.has3::after { content: '3'; color: darkgoldenrod; }
+.field.has4::after { content: '4'; color: red; }
+.field.has5::after { content: '5'; color: orange; }
+.field.has6::after { content: '6'; color: purple; }
+.field.has7::after { content: '7'; color: chocolate; }
+.field.has8::after { content: '8'; color: magenta; }
 
 .sibling1 { box-shadow: inset  2px  2px 1px #000; }
 .sibling2 { box-shadow: inset  0px  2px 1px #000; }
