@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Utility Guide - Smokes & Utilities</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+            height: 100px;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #a8b2d1;
+            margin-top: 10px;
+        }
+
+        .map-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .filter-btn[data-side="ct"] {
+            border-color: #4a90e2;
+        }
+
+        .filter-btn[data-side="ct"]:hover {
+            background: rgba(74, 144, 226, 0.3);
+        }
+
+        .filter-btn[data-side="ct"].active {
+            background: #4a90e2;
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.5);
+        }
+
+        .filter-btn[data-side="tr"] {
+            border-color: #e74c3c;
+        }
+
+        .filter-btn[data-side="tr"]:hover {
+            background: rgba(231, 76, 60, 0.3);
+        }
+
+        .filter-btn[data-side="tr"].active {
+            background: #e74c3c;
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.5);
+        }
+
+        .maps-grid {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px;
+            scroll-behavior: smooth;
+            height: calc(100% - 100px);
+        }
+
+        .maps-grid::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .maps-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .maps-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .maps-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            min-width: 400px;
+            flex-shrink: 0;
+        }
+
+        .map-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .map-header {
+            padding: 40px 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            text-align: center;
+        }
+
+        .map-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .map-name {
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-container {
+            padding: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-title {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #a8b2d1;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .no-videos {
+            text-align: center;
+            padding: 40px;
+            color: #a8b2d1;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .map-card {
+                min-width: 320px;
+            }
+
+            .filter-btn {
+                padding: 12px 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 CS2 UTILITY GUIDE</h1>
+        </header>
+        <div class="maps-grid" id="mapsGrid"></div>
+    </div>
+
+    <script>
+        const mapsData = {
+            mirage: {
+                name: "Mirage",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_p3640NB7PPjfo573Wdejv2efvisbxqkF5Q&s",
+                ct: [
+                ],
+                tr: [
+                    { title: "Smokes Bomb A", video: "QC2_GJOYoGc" }
+                ]
+            },
+            dust2: {
+                name: "Dust 2",
+                image: "https://img-cdn.hltv.org/gallerypicture/NHjWpIj8lNlRM-_OGkGSW_.jpg?ixlib=java-2.1.0&w=1200&s=8e40510e9331d025088971931584a620",
+                ct: [
+                ],
+                tr: [
+                    { title: "Smokes Bomb B", video: "vkLMyXkJfpM" }
+                ]
+            },
+            inferno: {
+                name: "Inferno",
+                image: "https://assets.gamearena.gg/wp-content/uploads/2024/04/01141238/De_infernoCS2BSite.jpeg",
+                ct: [
+                ],
+                tr: [
+                ]
+            },
+            nuke: {
+                name: "Nuke",
+                image: "https://i.redd.it/nuke-cs1-vs-cs2-comparison-shots-v0-1rl0kalos29b1.png?width=2560&format=png&auto=webp&s=920e3cb3d15f245468c66ea1932211d6a538cfc9",
+                ct: [
+                ],
+                tr: [
+                    { title: "Smokes Fora", video: "esSCv3umgoM" }
+                ]
+            },
+            ancient: {
+                name: "Ancient",
+                image: "https://images.steamusercontent.com/ugc/2042997274847133077/8534B50A5A691EE7D3F1500E1CF03D41A37D03AC/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+                ct: [
+                ],
+                tr: [
+                ]
+            },
+            train: {
+                name: "Train",
+                image: "https://cdn.sanity.io/images/6znhzi10/production/d72ebcffe297b573d921eb18436ecdf458aff188-1917x1054.jpg?w=768&auto=format",
+                ct: [
+                ],
+                tr: [
+                ]
+            },
+            vertigo: {
+                name: "Vertigo",
+                image: "https://cs.money/ru/blog/wp-content/uploads/2024/12/cs2_vertigo_a_site.jpg",
+                ct: [
+                ],
+                tr: [
+                ]
+            },
+            anubis: {
+                name: "Anubis",
+                image: "https://static.draft5.gg/news/2023/06/07112727/Anubis-CS2.jpg",
+                ct: [
+                ],
+                tr: [
+                ]
+            }
+        };
+
+        function renderMaps() {
+            const grid = $('#mapsGrid');
+            grid.empty();
+
+            $.each(mapsData, function(key, map) {
+                const mapCard = $('<div class="map-card"></div>');
+                
+                const mapHeader = $(`
+                    <div class="map-header" style="background-image: url('${map.image}')">
+                        <div class="map-name">${map.name}</div>
+                    </div>
+                `);
+                
+                const videoContainer = $('<div class="video-container"></div>');
+                
+                // Adicionar filtros dentro do mapa
+                const filterSection = $(`
+                    <div class="map-filter">
+                        <button class="filter-btn active" data-map="${key}" data-side="ct">CT (${map.ct.length})</button>
+                        <button class="filter-btn" data-map="${key}" data-side="tr">TR (${map.tr.length})</button>
+                    </div>
+                `);
+                
+                const videosDiv = $(`<div class="videos-list" data-map="${key}"></div>`);
+                
+                // Renderizar vídeos CT por padrão
+                renderVideos(map.ct, videosDiv);
+                
+                videoContainer.append(filterSection).append(videosDiv);
+                mapCard.append(mapHeader).append(videoContainer);
+                grid.append(mapCard);
+            });
+        }
+
+        function renderVideos(videos, container) {
+            container.empty();
+            
+            if (videos.length > 0) {
+                $.each(videos, function(i, video) {
+                    const videoElement = $(`
+                        <div>
+                            <div class="video-title">${video.title}</div>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/${video.video}" referrerpolicy="no-referrer-when-downgrade" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    `);
+                    container.append(videoElement);
+                });
+            } else {
+                container.append('<div class="no-videos">Nenhum vídeo disponível</div>');
+            }
+        }
+
+        $(document).ready(function() {
+            renderMaps();
+
+            $(document).on('click', '.filter-btn', function() {
+                const mapKey = $(this).data('map');
+                const side = $(this).data('side');
+                
+                // Atualizar botões ativos apenas dentro do mesmo mapa
+                $(`.filter-btn[data-map="${mapKey}"]`).removeClass('active');
+                $(this).addClass('active');
+                
+                // Renderizar vídeos do lado selecionado
+                const videosContainer = $(`.videos-list[data-map="${mapKey}"]`);
+                const videos = mapsData[mapKey][side];
+                renderVideos(videos, videosContainer);
+            });
+        });
+    </script>
+</body>
+</html>
